@@ -1,0 +1,234 @@
+<!--确认模态框 start-->
+<div class="modal fade bs-example-modal-static" id="com_confirmModal_temp" aria-hidden="true" data-backdrop="static" aria-labelledby="mySmallModalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" ></h4>
+            </div>
+            <div class="modal-body" ></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary com_confirm_modal_sure_btn  btn-sm">确定</button>
+                <button type="button" class="btn btn-primary com_confirm_modal_cancel_btn" data-dismiss="modal">取消</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--确认模态框 end -->
+
+<!--消息框 start -->
+<div class="modal fade modal-ext"  id="com_infoModal_temp" tabindex="-1" role="dialog" aria-labelledby="com_infoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" >
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" ></h4>
+            </div>
+            <div class="modal-body" >
+
+            </div>
+            <div class="modal-footer">
+                <button type="button"   class="btn btn-primary com_info_modal_btn btn-sm" data-dismiss="modal">确定</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!--消息框 end-->
+
+<!--等待模态框 start-->
+<div class="modal fade bs-example-modal-static" id="com_waitModal_temp"
+     aria-hidden="true" data-backdrop="static"
+     aria-labelledby="mySmallModalLabel" role="dialog" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body" id="com_waitModal_content">
+                <div class="progress progress-striped active">
+                    <div class="progress-bar" role="progressbar" aria-valuenow="100"
+                         aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                        <span class="sr-only">100% Complete</span>
+                    </div>
+                </div>
+                <span class="wait_modal_tip"></span>
+            </div>
+        </div>
+    </div>
+</div>
+<!--等待模态框 end -->
+
+<script>
+/**
+* 公共消息框
+*
+* 基于jquery，使用前，请引入jQuery
+ * 说明： 1.调用show函数，进行创建。 2.传递创建参数，如果为提供某参数，则使用默认值。
+*
+* @author TL
+*/
+(function($) {
+$.extend({
+com_modal_info : {
+defaultOption : {
+title : "温馨提示", // 头部信息
+content : "",// 消息内容
+isHtml:true,//内容是否按html解析，默认解析
+static : true,// 是否模态，点击背景是否消失 true不消失
+pre : $.noop, // 前置函数
+done : $.noop,// 后置函数
+callback : $.noop,// 回调函数
+_index : 0
+},
+show : function(userOption) {
+//如果传来为字符串，则只做内容处理
+if(userOption && typeof userOption =='string'){
+userOption={content:userOption};
+}
+// copy参数
+var option = {};
+$.extend(option, this.defaultOption, userOption);
+
+// 执行开始前回调
+option.pre();
+this.defaultOption._index++;
+
+// 根据消息框模板生成消息框
+$newModal = $("#com_infoModal_temp").clone().attr("id",
+"com_info_" + this.defaultOption._index);
+
+// 设置标题
+$newModal.find(".modal-title").text(option.title);
+// 设置主体内容部分
+if(option.isHtml){
+$newModal.find(".modal-body").html(option.content);
+}else{
+$newModal.find(".modal-body").text(option.content);
+}
+// 显示
+$newModal.modal({
+backdrop : option.static ? "static" : true
+});
+
+if (option.callback && typeof option.callback == "function") {
+var fn_com_info_close = function() {
+$newModal.modal('hide');
+};
+$newModal.find(".com_info_modal_btn").unbind().click(
+fn_com_info_close).click(option.callback);
+$newModal.find('.close').unbind().click(fn_com_info_close)
+.click(option.callback);
+}
+
+// 执行完成回调
+option.done();
+
+return $newModal;// 返回对象本事，用来连缀操作
+}
+
+},
+com_modal_confirm : {
+defaultOption : {
+title : "操作确认",
+content : "",
+isHtml:true,//内容是否按html解析，默认解析
+static : true,
+callback : $.noop,
+cancel : $.noop,//取消按钮回调函数
+_index : 0
+},
+show : function(userOption) {
+// copy参数
+var option = {};
+$.extend(option, this.defaultOption, userOption);
+
+this.defaultOption._index++;
+
+// 根据消息框模板生成消息框
+$newModal = $("#com_confirmModal_temp").clone().attr("id",
+"com_confirm_" + this.defaultOption._index);
+
+// 设置标题
+$newModal.find(".modal-title").text(option.title);
+// 设置主体内容部分
+if(option.isHtml){
+$newModal.find(".modal-body").html(option.content);
+}else{
+$newModal.find(".modal-body").text(option.content);
+}
+
+// 关闭模态框
+var fn_com_confirm_close = function() {
+$newModal.modal('hide');
+};
+// 绑定确定按钮
+$newModal.find(".com_confirm_modal_sure_btn").unbind().click(
+fn_com_confirm_close).click(option.callback);
+// 绑定取消按钮
+$newModal.find('.com_confirm_modal_cancel_btn').unbind().click(
+fn_com_confirm_close).click(option.cancel);
+// 绑定关闭x号图标
+$newModal.find('.close').unbind().click(fn_com_confirm_close);
+// 展示模态框
+$newModal.modal({
+//V3.44.0.0 TL option.static写成了option.stitic导致确认框不是模态展示 STRT
+backdrop : option.static ? "static" : true
+//V3.44.0.0 TL option.static写成了option.stitic导致确认框不是模态展示 END
+});
+
+return $newModal;
+
+}
+},
+com_modal_wait : {
+defaultOption : {
+content : "请耐心等待......",
+isHtml:true,//内容是否按html解析，默认解析
+_index : 0
+},
+show : function(userOption) {
+//如果传来为字符串，则只做内容处理
+if(userOption && typeof userOption =='string'){
+userOption={content:userOption};
+}
+// copy参数
+var option = {};
+$.extend(option, this.defaultOption, userOption);
+
+this.defaultOption._index++;
+
+// 根据消息框模板生成消息框
+$newModal = $("#com_waitModal_temp").clone().attr("id",
+"com_wait_" + this.defaultOption._index);
+
+// 绑定信息
+if(option.isHtml){
+$newModal.find(".wait_modal_tip").html(option.content);
+}else{
+$newModal.find(".wait_modal_tip").text(option.content);
+}
+// 展示框
+$newModal.modal({backdrop : "static"});
+// 设置其距离顶部的距离
+$newModal.css("padding-top", "100px");
+// 设置关闭方法，以便用于###.close()的形式调用
+$newModal.close = function() {
+this.modal("hide");
+};
+
+return $newModal;
+},
+close : function($thisModal) {
+if (!$thisModal) {
+return false;
+}
+$thisModal.modal("hide");
+}
+}
+});
+
+})(jQuery);
+</script>

@@ -1,0 +1,24 @@
+const express = require('express');
+const logger = require('../../common/log4js');
+const router = express.Router();
+
+const resMsg=require('../model/resMsg');
+
+router.get('/wish', function (req, res) {
+    logger.debug('访问wish首页');
+    res.render('wish/wish');
+
+});
+router.get('/user', function (req, res) {
+    logger.debug('访问user首页');
+    res.render('wish/user');
+
+});
+router.get('/university', function (req, res) {
+    logger.debug('访问university首页');
+    res.render('wish/university');
+
+});
+
+//必须
+module.exports = router;

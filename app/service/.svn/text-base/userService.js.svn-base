@@ -1,0 +1,221 @@
+const logger = require('../../common/log4js');
+const pool = require('../../common/mysqlPool');
+//const async = require('async');
+
+const userService={};
+
+// /**
+//  * 根据id获取明细
+//  * @param callback
+//  * @param id
+//  */
+// userService.getById=(params,callback)=>{
+//    console.log(params.id);
+//
+//     pool.exec(function(db){
+//         //TODO TL 为什么限制返回结果字段，无效果
+//         db.collection("user").findOne({'_id':objectId(params.id)},{pwd:1}).then(result=>{
+//             console.log("有返回结果啦3！！！");
+//             console.log(result);
+//             callback(null,result);
+//         }).catch(err=>{
+//             callback(err);
+//         });
+//
+//         db.collection("user").findOne({'_id':objectId(params.id)},{pwd:1},function(err,result){
+//             console.log("99999999999999");
+//             console.log(result);
+//         });
+//         db.collection("user").find({'_id':objectId(params.id)},{pwd:1}).toArray().then(result=>{
+//             console.log("有返回结果啦4！！！");
+//             console.log(result);
+//             // callback(null,result);
+//         }).catch(err=>{
+//             // callback(err);
+//         });
+//
+//     });
+//
+//
+// }
+//
+// /**
+//  * 会员注册
+//  *
+//  * @param user
+//  * @param callback
+//  *
+//  * @author TL
+//  * @date 2019-03-14
+//  */
+// userService.register=(user,callback)=>{
+//     pool.exec(function(db){
+//         async.series([
+//             //1.校验邮箱是否已经存在
+//             (cback)=>{
+//                 console.log("我是第一步骤");
+//                 let filter={email:user.email};
+//                 db.collection("user").find(filter).toArray().then(result => {
+//                     if(result.length>0){
+//                         cback("邮箱已存在！");
+//                         return false;
+//                     }
+//                     //放行到下一步
+//                     cback(null);
+//                 }).catch(err => {
+//                     callback("出错啦"+err)
+//                 });
+//             },
+//             //2.新会员入库
+//             (cback)=>{
+//                 console.log("我是第二步骤");
+//                 db.collection("user").insert(user, function (err, result) {
+//                     //如果存在错误
+//                     if (err) {
+//                         cback(err);
+//                         return false;
+//                     }
+//                     cback(null,result);
+//
+//                 });
+//             }
+//         ],function(err,values){
+//             // console.log("我是第二步骤");
+//             if(err){
+//                 console.log(err);
+//                 callback(err);
+//                 return false;
+//             }
+//
+//             callback(null,values);
+//
+//         });
+//
+//     });
+// }
+
+/**
+ * 会员登陆
+ *
+ * @param user
+ * @param callback
+ *
+ */
+userService.login=(user,callback)=> {
+
+    var querySql = 'select * from life.user where uid =?';
+
+    var queryParam = [user.uid];
+
+    // logger.info(user.uid);
+    // logger.info(user.pwd);
+
+    pool.query(querySql, queryParam, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        } else {
+
+            if (!rows||rows.length==0) {
+                callback("用户不存在！");
+                return false;
+            }
+
+            if (rows[0].pwd !== user.pwd) {
+                callback("密码不对！");
+                return false;
+            }
+
+
+            callback(null,rows);
+
+        }
+
+    });
+}
+    // pool.exec(function(db){
+    //     db.collection("user").findOne({email:user.email}).then(result=>{
+    //         if(!result){
+    //             callback("用户不存在！");
+    //             return false;
+    //         }
+    //
+    //         if(result.pwd!==user.pwd){
+    //             callback("密码不对！");
+    //             return false;
+    //         }
+    //
+    //         callback(null,result);
+    //
+    //     }).catch(err=>{
+    //         callback(err);
+    //     });
+    // });
+// }
+
+// /**
+//  * 重置密码
+//  *
+//  * @param params
+//  * @param callback
+//  *
+//  * @date 2019-03-23
+//  */
+// userService.resetPwd=(user,callback)=>{
+//     pool.exec(function(db){
+//         async.series([
+//             //1.校验
+//             (cback) => {
+//                 console.log("我是第一步骤");
+//                 db.collection("user").findOne({email: user.email}).then(result => {
+//                     if (!result) {
+//                         cback("用户不存在！");
+//                         return false;
+//                     }
+//
+//                     if (result.pwd !== user.oldPwd) {
+//                         cback("旧密码不对！");
+//                         return false;
+//                     }
+//
+//                     cback(null, result);
+//
+//                 }).catch(err => {
+//                     console.error(err)
+//                     cback(err);
+//                 });
+//
+//             },
+//             //2.更新密码
+//             (cback) => {
+//                 console.log("我是第二步骤");
+//                 // db.collection("user").update({'_id': objectId(params.id)}, {$set: {pwd: user.newPwd1}},(err,result)=>{
+//                 db.collection("user").update({email: user.email}, {$set: {pwd: user.newPwd1}},(err,result)=>{
+//                     if(err){
+//                         cback(err);
+//                         return false;
+//                     }
+//
+//                     cback(null, result);
+//                 });
+//             }
+//         ], function (err, values) {
+//             // console.log("我是第二步骤");
+//             if (err) {
+//                 console.log(err);
+//                 callback(err);
+//                 return false;
+//             }
+//
+//             callback(null, values);
+//
+//         });
+//
+//     });
+//
+// }
+
+
+
+
+module.exports=userService;

@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="generator" content="Hexo 3.8.0" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>我的朋友们 | hehear</title>
+
+    <!--seo-->
+    <meta name="keywords" content="友链、hehear、博客" />
+    <meta name="description" content="hehear博客友情链接页面。" />
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <!-- meta -->
+    <!-- link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css" />
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.ico" />
+    <link rel="stylesheet" href="/css/style.css" />
+    <script>
+        function setLoadingBarProgress(num) {
+            document.getElementById('loading-bar').style.width = num + "%";
+        }
+    </script>
+</head>
+
+<body>
+<div class="cover-wrapper">
+    <cover class="cover links half">
+        <h1 class="title">hehear</h1>
+        <div class="m_search">
+            <form name="searchform" class="form u-search-form">
+                <input type="text" class="input u-search-input" placeholder="" />
+                <i class="icon fas fa-search fa-fw"></i>
+            </form>
+        </div>
+        <div class="menu navgation">
+            <ul class="h-list">
+                <li> <a class="nav home" href="/" id="home"> <i class="fas fa-rss fa-fw"></i>&nbsp;博文 </a> </li>
+
+                <li>
+                    <a class="nav home" href="/wiki/" rel="nofollow" >
+                        <i class="fas fa-tree fa-fw"></i>&nbsp;wiki
+                    </a>
+                </li>
+
+                <li> <a class="nav home" href="/archives/" id="archives"> <i class="fas fa-archive fa-fw"></i>&nbsp;归档 </a>
+                </li>
+                <li> <a class="nav home" href="/history/" rel="nofollow" id="history"> <i
+                        class="fas fa-history fa-fw"></i>&nbsp;版本 </a> </li>
+                <li> <a class="nav home" href="/about/" rel="nofollow" id="about"> <i
+                        class="fas fa-info-circle fa-fw"></i>&nbsp;关于 </a> </li>
+            </ul>
+        </div>
+    </cover>
+    <header class="l_header pure">
+        <div id="loading-bar-wrapper">
+            <div id="loading-bar" class="pure"></div>
+        </div>
+        <div class="wrapper">
+            <div class="nav-main container container--flex">
+                <a class="logo flat-box" href="/"> hehear </a>
+                <div class="menu navgation">
+                    <ul class="h-list">
+                        <li> <a class="nav flat-box" href="/" id="home"> <i class="fas fa-home fa-fw"></i>&nbsp;HOME </a> </li>
+                        <li> <a class="nav flat-box" href="/categories/" rel="nofollow" id="categories"> <i
+                                class="fas fa-folder-open fa-fw"></i>&nbsp;分类 </a> </li>
+                        <li> <a class="nav flat-box" href="/tags/" rel="nofollow" id="tags"> <i
+                                class="fas fa-hashtag fa-fw"></i>&nbsp;标签 </a> </li>
+                        <li> <a class="nav flat-box" href="/archives/" rel="nofollow" id="archives"> <i
+                                class="fas fa-archive fa-fw"></i>&nbsp;归档 </a> </li>
+                    </ul>
+                </div>
+                <div class="m_search">
+                    <form name="searchform" class="form u-search-form">
+                        <input type="text" class="input u-search-input" placeholder="搜索" />
+                        <i class="icon fas fa-search fa-fw"></i>
+                    </form>
+                </div>
+                <ul class="switcher h-list">
+                    <li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+                    <li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+                </ul>
+            </div>
+            <div class="nav-sub container container--flex">
+                <a class="logo flat-box"></a>
+                <ul class="switcher h-list">
+                    <li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a></li>
+                    <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <aside class="menu-phone">
+        <header>
+            <nav class="menu navgation">
+                <ul>
+                    <li> <a class="nav flat-box" href="/" id="home"> <i class="fas fa-home fa-fw"></i>&nbsp;HOME </a> </li>
+                    <li> <a class="nav flat-box" href="/archives/" rel="nofollow" id="archives"> <i
+                            class="fas fa-archive fa-fw"></i>&nbsp;文章归档 </a> </li>
+                    <li> <a class="nav flat-box" href="/history/" id="history"> <i class="fas fa-history fa-fw"></i>&nbsp;版本历史
+                    </a> </li>
+                    <li> <a class="nav flat-box" href="/friends/" rel="nofollow" id="friends"> <i
+                            class="fas fa-link fa-fw"></i>&nbsp;我的友链 </a> </li>
+                    <li> <a class="nav flat-box" href="#" rel="nofollow" id="#"> <i class="fas fa-book fa-fw"></i>&nbsp;在建设中
+                    </a> </li>
+                    <li> <a class="nav flat-box" href="/about/" rel="nofollow" id="about"> <i
+                            class="fas fa-info-circle fa-fw"></i>&nbsp;关于小站 </a> </li>
+                </ul>
+            </nav>
+        </header>
+    </aside>
+    <script>
+        setLoadingBarProgress(40);
+    </script>
+</div>
+<div class="l_body">
+    <div class="body-wrapper">
+        <div class="l_main">
+            <article id="links" class="post white-box article-type-links" itemscope="" itemprop="blogPost">
+                <section class="meta">
+                    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css" />
+                    <div class="aplayer aplayer-arrow aplayer-narrow" data-theme="" data-mini="true" data-autoplay="true"
+                         data-mode="circulation" data-server="netease" data-type="song" data-id="16846091" data-volume="0.7">
+                        <div class="aplayer-pic"
+                             style="background-image: url(&quot;https://api.i-meto.com/api/v1/meting?server=netease&amp;type=pic&amp;id=663005511556827&amp;auth=23264b1f7a240d19223ccd26015ab61606db92b65e9d660256ee2393cd0cd35a&quot;);"
+                             https:="" api.i-meto.com="" api="" v1=""
+                             meting?server="netease&amp;type=pic&amp;id=663005511556827&amp;auth=23264b1f7a240d19223ccd26015ab61606db92b65e9d660256ee2393cd0cd35a&quot;);&quot;">
+                            <div class="aplayer-button aplayer-play">
+                                <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 16 31">
+                                    <path
+                                            d="M15.552 15.168q0.448 0.32 0.448 0.832 0 0.448-0.448 0.768l-13.696 8.512q-0.768 0.512-1.312 0.192t-0.544-1.28v-16.448q0-0.96 0.544-1.28t1.312 0.192z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="aplayer-info">
+                            <div class="aplayer-music">
+                                <span class="aplayer-title">Inspire</span>
+                                <span class="aplayer-author"> - Capo Productions</span>
+                            </div>
+                            <div class="aplayer-lrc">
+                                <div class="aplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);">
+                                </div>
+                            </div>
+                            <div class="aplayer-controller">
+                                <div class="aplayer-bar-wrap">
+                                    <div class="aplayer-bar">
+                                        <div class="aplayer-loaded" style="width: 37.9448%;"></div>
+                                        <div class="aplayer-played" style="width: 1.94143%;">
+                        <span class="aplayer-thumb" style="background: ;"> <span class="aplayer-loading-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 32 32">
+                              <path
+                                      d="M4 16c0-6.6 5.4-12 12-12s12 5.4 12 12c0 1.2-0.8 2-2 2s-2-0.8-2-2c0-4.4-3.6-8-8-8s-8 3.6-8 8 3.6 8 8 8c1.2 0 2 0.8 2 2s-0.8 2-2 2c-6.6 0-12-5.4-12-12z">
+                              </path>
+                            </svg></span> </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="aplayer-time aplayer-time-narrow">
+                    <span class="aplayer-time-inner"> - <span class="aplayer-ptime">00:04</span> / <span
+                            class="aplayer-dtime">03:39</span> </span>
+                                    <div class="aplayer-volume-wrap">
+                                        <button type="button" class="aplayer-icon aplayer-icon-volume-down">
+                                            <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 28 32">
+                                                <path
+                                                        d="M13.728 6.272v19.456q0 0.448-0.352 0.8t-0.8 0.32-0.8-0.32l-5.952-5.952h-4.672q-0.48 0-0.8-0.352t-0.352-0.8v-6.848q0-0.48 0.352-0.8t0.8-0.352h4.672l5.952-5.952q0.32-0.32 0.8-0.32t0.8 0.32 0.352 0.8zM20.576 16q0 1.344-0.768 2.528t-2.016 1.664q-0.16 0.096-0.448 0.096-0.448 0-0.8-0.32t-0.32-0.832q0-0.384 0.192-0.64t0.544-0.448 0.608-0.384 0.512-0.64 0.192-1.024-0.192-1.024-0.512-0.64-0.608-0.384-0.544-0.448-0.192-0.64q0-0.48 0.32-0.832t0.8-0.32q0.288 0 0.448 0.096 1.248 0.48 2.016 1.664t0.768 2.528z">
+                                                </path>
+                                            </svg> </button>
+                                        <div class="aplayer-volume-bar-wrap">
+                                            <div class="aplayer-volume-bar">
+                                                <div class="aplayer-volume" style="height: 70%;"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button type="button" class="aplayer-icon aplayer-icon-loop">
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 29 32">
+                                            <path
+                                                    d="M9.333 9.333h13.333v4l5.333-5.333-5.333-5.333v4h-16v8h2.667v-5.333zM22.667 22.667h-13.333v-4l-5.333 5.333 5.333 5.333v-4h16v-8h-2.667v5.333z">
+                                            </path>
+                                        </svg> </button>
+                                    <button type="button" class="aplayer-icon aplayer-icon-menu">
+                                        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewbox="0 0 22 32">
+                                            <path
+                                                    d="M20.8 14.4q0.704 0 1.152 0.48t0.448 1.12-0.48 1.12-1.12 0.48h-19.2q-0.64 0-1.12-0.48t-0.48-1.12 0.448-1.12 1.152-0.48h19.2zM1.6 11.2q-0.64 0-1.12-0.48t-0.48-1.12 0.448-1.12 1.152-0.48h19.2q0.704 0 1.152 0.48t0.448 1.12-0.48 1.12-1.12 0.48h-19.2zM20.8 20.8q0.704 0 1.152 0.48t0.448 1.12-0.48 1.12-1.12 0.48h-19.2q-0.64 0-1.12-0.48t-0.48-1.12 0.448-1.12 1.152-0.48h19.2z">
+                                            </path>
+                                        </svg> </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="aplayer-list aplayer-list-hide" style="max-height: 340px; height: 32px;">
+                            <ol>
+                                <li class="aplayer-list-light"> <span class="aplayer-list-cur" style="background: ;"></span> <span
+                                        class="aplayer-list-index">1</span> <span class="aplayer-list-title">Inspire</span> <span
+                                        class="aplayer-list-author">Capo Productions</span> </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+                    <div class="meta" id="header-meta">
+                        <h1 class="title"><a href="/friends/index.html">我的朋友们</a></h1>
+                        <div class="new-meta-box"></div>
+                        <hr />
+                    </div>
+                </section>
+                <section class="article typo l_friends">
+                    <div class="friends-group">
+                        <h2 class="friend-header"><i class="fas fa-user-secret fa-fw" aria-hidden="true"></i> 技术大佬</h2>
+                        <div class="friend-content">
+                            <a class="friend-card" style="background:#5e94e9;color:#efefef" target="_blank"
+                               rel="external nofollow noopener noreferrer" href="http://47.100.249.45/">
+                                <div class="friend-left">
+                                    <img class="avatar"
+                                         src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@18.12.27/posts/friends/78d4e99e31a450a86383a7c176f367a9c3fe65.png" />
+                                </div>
+                                <div class="friend-right">
+                                    <p class="friend-name">Exam</p>
+                                    <div class="friend-tags-wrapper">
+                                        <p class="tags"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>exam</p>
+                                        <p class="tags"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>blog</p>
+                                    </div>
+                                </div>
+                            </a>
+                            <a class="friend-card" style="background:#5c595a;color:#ddd" target="_blank"
+                               rel="external nofollow noopener noreferrer" href="http://www.feefee.top">
+                                <div class="friend-left">
+                                    <img class="avatar" src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png"
+                                         data-echo="https://img.vim-cn.com/3c/ce71eb91fb719ad8e326edfec955567fee59c4.png" />
+                                </div>
+                                <div class="friend-right">
+                                    <p class="friend-name">FEE</p>
+                                    <div class="friend-tags-wrapper">
+                                        <p class="tags"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>note </p>
+                                    </div>
+                                </div>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <!--<div class="friends-group">-->
+                        <!--<h2 class="friend-header"><i class="fas fa-handshake fa-fw" aria-hidden="true"></i> 欢迎各行各业的朋友</h2>-->
+                        <!--<div class="friend-content">-->
+                            <!--<a class="friend-card" style="background:#87977f;color:#efefef" target="_blank"-->
+                               <!--rel="external nofollow noopener noreferrer" href="#comments">-->
+                                <!--<div class="friend-left">-->
+                                    <!--<img class="avatar" src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png" />-->
+                                <!--</div>-->
+                                <!--<div class="friend-right">-->
+                                    <!--<p class="friend-name"><i class="fas fa-comment-dots fa-fw" aria-hidden="true"></i> 赶快留言吧</p>-->
+                                    <!--<div class="friend-tags-wrapper">-->
+                                        <!--<p class="tags"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>1~4个标签</p>-->
+                                        <!--<p class="tags"><i class="fas fa-hashtag fa-fw" aria-hidden="true"></i>两个最佳</p>-->
+                                    <!--</div>-->
+                                <!--</div>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<br />-->
+                    <!--<hr />-->
+                    <!--<p><br /></p>-->
+                    <!--<p>各位大佬想交换友链的话可以在下方留言，必须要有名称、头像链接、和至少一个标签哦～</p>-->
+                    <!--<blockquote>-->
+                        <!--<p>名称： hehear’s blog<br />头像： <a href="https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png"-->
+                                                         <!--rel="external nofollow noopener noreferrer"-->
+                                                         <!--target="_blank">https://cdn.jsdelivr.net/gh/xaoxuu/assets@master/avatar/avatar.png</a><br />网址： <a-->
+                                <!--href="https://hehear.com">https://hehear.com</a><br />标签： java</p>-->
+                    <!--</blockquote>-->
+                    <!--<h6>分组和标签不合适的话可以留言或者发邮件私聊我进行更改。<br />头像尺寸是64px，3倍精细度就足够了，也就是192px，如果文件体积太大可以<a-->
+                            <!--href="https://www.tiomg.org/image" rel="external nofollow noopener noreferrer" target="_blank">压缩</a>一下。-->
+                    <!--</h6>-->
+                </section>
+            </article>
+            <!-- 显示推荐文章和评论 -->
+            <article class="post white-box comments">
+                <section class="article typo">
+                    <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+                    <section id="comments">
+                        <div id="valine_container" class="valine_thread">
+                            <i class="fas fa-spinner fa-spin fa-fw"></i>
+                        </div>
+                    </section>
+                </section>
+            </article>
+        </div>
+
+
+        <!--右侧导航部分 -->
+        {% include "../right.html" %}
+        <!--尾部部分 -->
+        {% include "../footer.html" %}
+
+        <script>
+            setLoadingBarProgress(80);
+        </script>
+        <script>
+            setLoadingBarProgress(60);
+        </script>
+    </div>
+    <a class="s-top fas fa-arrow-up fa-fw" href="javascript:void(0)"></a>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+<script>
+    window.subData = {
+        title: "friends",
+        tools: true
+    }
+</script>
+<script>
+    var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+    var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+    var ALGOLIA_API_KEY = "";
+    var ALGOLIA_APP_ID = "";
+    var ALGOLIA_INDEX_NAME = "";
+    var AZURE_SERVICE_NAME = "";
+    var AZURE_INDEX_NAME = "";
+    var AZURE_QUERY_KEY = "";
+    var BAIDU_API_ID = "";
+    var SEARCH_SERVICE = "hehear" || "hehear";
+    var ROOT = "/" || "/";
+    if (!ROOT.endsWith('/')) ROOT += '/';
+</script>
+<script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+<script src="/js/scrollreveal.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        const $reveal = $('.reveal');
+        if ($reveal.length === 0) return;
+        const sr = ScrollReveal({
+            distance: 0
+        });
+        sr.reveal('.reveal');
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        Waves.attach('.flat-btn', ['waves-button']);
+        Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+        Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+        Waves.attach('.flat-box', ['waves-block']);
+        Waves.attach('.float-box', ['waves-block', 'waves-float']);
+        Waves.attach('.waves-image');
+        Waves.init();
+    });
+</script>
+<script async src="/js/busuanzi.pure.mini.js"></script>
+<script src="/js/jquery.backstretch.min.js"></script>
+<script type="text/javascript">
+    $(function () {
+        if ('.cover') {
+            $('.cover').backstretch(
+                ["/img/background.jpg"], {
+                    duration: "6000",
+                    fade: "2500"
+                });
+        } else {
+            $.backstretch(
+                ["/img/background.jpg"], {
+                    duration: "6000",
+                    fade: "2500"
+                });
+        }
+    });
+</script>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/volantis@1/js/volantis.min.js"></script>
+<script>
+    var GUEST_INFO = ['nick', 'mail', 'link'];
+    var guest_info = 'nick,mail,link'.split(',').filter(function (item) {
+        return GUEST_INFO.indexOf(item) > -1
+    });
+    var notify = 'false' == true;
+    var verify = 'false' == true;
+    var valine = new Valine();
+    valine.init({
+        el: '#valine_container',
+        notify: notify,
+        verify: verify,
+        guest_info: guest_info,
+
+        appId: "wcW7qLiXU8LXBEA9FB7cvKWf-gzGzoHsz",
+        appKey: "KfLYrkLqc1wB0Iq0GWCBqN51",
+        placeholder: "快来评论吧~",
+        pageSize: '10',
+        avatar: 'mp',
+        lang: 'zh-cn',
+        highlight: 'false'
+    })
+</script>
+<script src="/js/app.js"></script>
+<script src="/js/search.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/toddmotto/echo@1.7.3/src/echo.js"></script>
+<script>
+    echo.init({
+        offset: 100,
+        throttle: 250,
+        unload: false,
+        callback: function (element, op) {
+            // console.log(element, 'has been', op + 'ed');
+        }
+    });
+</script>
+<!-- 复制 -->
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+    let COPY_SUCCESS = "复制成功";
+    let COPY_FAILURE = "复制失败";
+    /*页面载入完成后，创建复制按钮*/
+    ! function (e, t, a) {
+        /* code */
+        var initCopyCode = function () {
+            var copyHtml = '';
+            copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+            copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+            copyHtml += '</button>';
+            $(".highlight .code pre").before(copyHtml);
+            var clipboard = new ClipboardJS('.btn-copy', {
+                target: function (trigger) {
+                    return trigger.nextElementSibling;
+                }
+            });
+
+            clipboard.on('success', function (e) {
+                //您可以加入成功提示
+                console.info('Action:', e.action);
+                console.info('Text:', e.text);
+                console.info('Trigger:', e.trigger);
+                success_prompt(COPY_SUCCESS);
+                e.clearSelection();
+            });
+            clipboard.on('error', function (e) {
+                //您可以加入失败提示
+                console.error('Action:', e.action);
+                console.error('Trigger:', e.trigger);
+                fail_prompt(COPY_FAILURE);
+            });
+        }
+        initCopyCode();
+
+    }(window, document);
+
+    /**
+     * 弹出式提示框，默认1.5秒自动消失
+     * @param message 提示信息
+     * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+     * @param time 消失时间
+     */
+    var prompt = function (message, style, time) {
+        style = (style === undefined) ? 'alert-success' : style;
+        time = (time === undefined) ? 1500 : time * 1000;
+        $('<div>')
+            .appendTo('body')
+            .addClass('alert ' + style)
+            .html(message)
+            .show()
+            .delay(time)
+            .fadeOut();
+    };
+
+    // 成功提示
+    var success_prompt = function (message, time) {
+        prompt(message, 'alert-success', time);
+    };
+
+    // 失败提示
+    var fail_prompt = function (message, time) {
+        prompt(message, 'alert-danger', time);
+    };
+
+    // 提醒
+    var warning_prompt = function (message, time) {
+        prompt(message, 'alert-warning', time);
+    };
+
+    // 信息提示
+    var info_prompt = function (message, time) {
+        prompt(message, 'alert-info', time);
+    };
+</script>
+<!-- fancybox -->
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>
+    let LAZY_LOAD_IMAGE = "";
+    $(".article-entry").find("fancybox").find("img").each(function () {
+        var element = document.createElement("a");
+        $(element).attr("data-fancybox", "gallery");
+        $(element).attr("href", $(this).attr("src"));
+        /* 图片采用懒加载处理时,
+         * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+         * 那么此处将原本的属性名src替换为对应属性名data-original,
+         * 修改如下
+         */
+        if (LAZY_LOAD_IMAGE) {
+            $(element).attr("href", $(this).attr("data-original"));
+        }
+        $(this).wrap(element);
+    });
+</script>
+<script>
+    setLoadingBarProgress(100);
+</script>
+</body>
+
+</html>

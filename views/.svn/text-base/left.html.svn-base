@@ -1,0 +1,90 @@
+<div class="leftpanelinner">
+
+    <!-- This is only visible to small devices -->
+    <div class="visible-xs hidden-sm hidden-md hidden-lg">
+        <div class="media userlogged">
+            <img alt="" src="/kj/images/photos/loggeduser.png" class="media-object">
+            <div class="media-body">
+                <h4>${uid}</h4>
+                <span>"Life is so beautiful!"</span>
+            </div>
+        </div>
+
+        <!--<h5 class="sidebartitle actitle">Account</h5>-->
+        <!--<ul class="nav nav-pills nav-stacked nav-bracket mb30">-->
+            <!--<li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>-->
+            <!--<li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>-->
+            <!--<li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>-->
+            <!--<li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>-->
+        <!--</ul>-->
+    </div>
+
+    <h5 class="sidebartitle">列表</h5>
+    <ul class="nav nav-pills nav-stacked nav-bracket">
+        <li class="active"><a href="/"><i class="fa fa-home"></i> <span>主页</span></a></li>
+
+        <li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>任务模块</span></a>
+            <ul class="children">
+                <li><a href="javascript:void(0)" data-url='/target' class='js-menu-item'><i class="fa fa-caret-right"></i>任务管理</a></li>
+
+            </ul>
+        </li>
+        <!--<li class="nav-parent"><a href=""><i class="fa fa-edit"></i> <span>消息模块</span></a>-->
+            <!--<ul class="children">-->
+                <!--<li><a href="javascript:void(0)" data-url='/university' class='js-menu-item'><i class="fa fa-caret-right"></i>高&nbsp;&nbsp;校</a></li>-->
+                <!--<li><a href="javascript:void(0)" data-url='/universityWish' class='js-menu-item'><i class="fa fa-caret-right"></i>冤&nbsp;&nbsp;枉</a></li>-->
+                <!--<li><a href="javascript:void(0)" data-url='/info' class='js-menu-item'><i class="fa fa-caret-right"></i>消息列表</a></li>-->
+                 <!---->
+            <!--</ul>-->
+        <!--</li>-->
+        <!--<li class="nav-parent"><a href=""><i class="fa fa-suitcase"></i> <span>定时任务模块</span></a>-->
+            <!--<ul class="children">-->
+                <!--<li><a href="javascript:void(0)" data-url='/article'  class='js-menu-item'><i class="fa fa-caret-right"></i>文章维护</a></li>-->
+                <!--<li><a href="javascript:void(0)" data-url='/articletag' class='js-menu-item'><i class="fa fa-caret-right"></i>标签维护</a></li>-->
+                <!--<li><a href="javascript:void(0)" data-url='/articlecomment' class='js-menu-item'><i class="fa fa-caret-right"></i>文章评论</a></li>-->
+            <!--</ul>-->
+        <!--</li>-->
+    </ul>
+
+    <!--<div class="infosummary">-->
+        <!--<h5 class="sidebartitle">Information Summary</h5>-->
+        <!--<ul>-->
+            <!--<li>-->
+                <!--<div class="datainfo">-->
+                    <!--<span class="text-muted">Daily Traffic</span>-->
+                    <!--<h4>630, 201</h4>-->
+                <!--</div>-->
+                <!--<div id="sidebar-chart" class="chart"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="datainfo">-->
+                    <!--<span class="text-muted">Average Users</span>-->
+                    <!--<h4>1, 332, 801</h4>-->
+                <!--</div>-->
+                <!--<div id="sidebar-chart2" class="chart"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="datainfo">-->
+                    <!--<span class="text-muted">Disk Usage</span>-->
+                    <!--<h4>82.2%</h4>-->
+                <!--</div>-->
+                <!--<div id="sidebar-chart3" class="chart"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="datainfo">-->
+                    <!--<span class="text-muted">CPU Usage</span>-->
+                    <!--<h4>140.05 - 32</h4>-->
+                <!--</div>-->
+                <!--<div id="sidebar-chart4" class="chart"></div>-->
+            <!--</li>-->
+            <!--<li>-->
+                <!--<div class="datainfo">-->
+                    <!--<span class="text-muted">Memory Usage</span>-->
+                    <!--<h4>32.2%</h4>-->
+                <!--</div>-->
+                <!--<div id="sidebar-chart5" class="chart"></div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>&lt;!&ndash; infosummary &ndash;&gt;-->
+
+</div><!-- leftpanelinner -->

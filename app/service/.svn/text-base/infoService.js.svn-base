@@ -1,0 +1,307 @@
+/**
+ *
+ */
+const logger = require('../../common/log4js');
+const pool = require('../../common/mysqlPool');
+
+const infoService={};
+
+/**
+ * 新增
+ * @param news
+ * @param callback
+ */
+infoService.add=function(filter,callback){
+
+    logger.info('add info :{}',filter);
+
+    var  addSql = 'INSERT INTO info (info_tp, info_content, info_st, info_strt_dt, info_end_dt, update_user,update_tm, user_id, info_level) VALUES (?,?,?,?,?,?,?,?,?)';
+    var  addSqlParams = [filter.info_tp,filter.info_content,filter.st,filter.info_strt_dt,filter.info_end_dt,'SYSTEM',new Date(),filter.user_id,filter.info_level];
+
+    pool.query(addSql,addSqlParams,function (err, result) {
+
+        if(err){
+            console.log('[INSERT ERROR] - ',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 删除
+ * @param id
+ * @param callback
+ */
+infoService.delete=function(id,callback){
+
+    logger.info('delete target :{}',id);
+
+    var  deleteSql = 'delete from info where id=? ';
+    var  deleteSqlParams = [id];
+
+    pool.query(deleteSql,deleteSqlParams,function (err, result) {
+
+        if(err){
+            console.log('[delete ERROR] - ',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 修改
+ * @param news
+ * @param callback
+ */
+infoService.upt=function(filter,callback){
+
+    var  uptSql = 'update info set target_name=?,target_content=?,target_complete_content=?,target_date=?,target_tp=?,update_tm=?,update_user=?,st=? where id=?';
+    var  uptSqlParams = [filter.target_name,filter.target_content,filter.target_complete_content,filter.target_date,filter.target_tp,new Date(),'admin',filter.st,filter.id];
+
+    pool.query(uptSql,uptSqlParams,function (err, result) {
+
+        if(err){
+            console.log('[UPDT ERROR] - ',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 获取符合条件的数据条数
+ * @param news
+ * @param callback
+ */
+infoService.getTotal=function(school,callback){
+
+}
+
+/**
+ * 查询数据
+ * @param filter 条件
+ * @param callback
+ */
+infoService.queryInfo=function(filter,callback){
+
+    var querySql='select * from info WHERE 1=1  ';
+
+    var querySqlParams=[];
+
+
+    if(filter.st){
+        querySql+=' and info_st =? ';
+        querySqlParams.push(filter.st);
+
+    }
+
+    if(filter.user_id){
+        querySql+=' and user_id =? ';
+        querySqlParams.push(filter.user_id);
+
+    }
+
+    if(filter.strtDt && filter.endDt){
+        querySql+=' and target_date  between ? and ? ';
+        querySqlParams.push(filter.strtDt);
+        querySqlParams.push(filter.endDt);
+
+    }
+
+    pool.query(querySql, querySqlParams, function (err, rows1) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+            logger.info('消息:%d 条',rows1.length);
+
+            querySql+=' and read_st=\'0\'';
+
+            var queryCountSql="select count(*) as count from ( "+querySql+" ) tgt";
+
+            pool.query(queryCountSql,querySqlParams,function(err, rows){
+                if(err){
+                    logger.error(err);
+                    callback('error');
+                }else{
+                    var count=rows[0].count;
+
+                    callback(rows1,count);
+                }
+            });
+        }
+
+    });
+
+}
+
+/**
+ * 修改消息阅读状态
+ * @param callback
+ */
+infoService.updtReadSt=function(filter,callback){
+
+    var updtSql=' update life.info set  read_st =\'1\' where 1=1 ' ;
+
+    var updtSqlParams=[];
+
+    if(filter.id){
+        updtSql+=' and id=?  ';
+        updtSqlParams.push(filter.id);
+
+    }
+
+    if(filter.user_id){
+        updtSql+=' and user_id=?  ';
+        updtSqlParams.push(filter.user_id);
+
+    }
+
+    pool.query(updtSql,updtSqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+            //logger.info(rows);
+            //callback(rows);
+
+            callback(rows);
+
+        }
+
+    });
+
+}
+
+/**
+ * 清空已读消息
+ * @param callback
+ */
+infoService.updtHaveReadSt=function(callback){
+
+    var updtSql=' update life.info set  info_st =\'0\' where read_st=\'1\'' ;
+
+
+    pool.query(updtSql, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+            //logger.info(rows);
+            //callback(rows);
+
+            callback(rows.affectedRows);
+
+        }
+
+    });
+
+}
+
+
+/**
+ * 分页查询数据
+ * @param news 条件
+ * @param page 分页信息
+ * @param callback
+ */
+infoService.query4Page=function(filter,page,callback){
+
+    var querySql='select * from info WHERE 1=1  ';
+
+    var querySqlParams=[];
+
+    if(filter.target_tp){
+        querySql+=' and target_tp=? ';
+        querySqlParams.push(filter.target_tp);
+    }
+
+    if(filter.target_name){
+        querySql+=' and target_name like ?  ';
+        querySqlParams.push("%"+filter.target_name+"%");
+
+    }
+
+    if(filter.target_content){
+        querySql+=' and target_content like ?  ';
+        querySqlParams.push("%"+filter.target_content+"%");
+
+    }
+
+    if(filter.st){
+        querySql+=' and st =? ';
+        querySqlParams.push(filter.st);
+
+    }
+
+    querySql+=' limit ?,?';
+
+    querySqlParams.push((page.pgindex-1)*page.pgsize);
+    querySqlParams.push(page.pgsize);
+
+    pool.query(querySql, querySqlParams, function (err, rows1) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+            // logger.info('load target list:%d 条',rows1.length);
+            //callback(rows);
+            pool.query('select count(*) as count from target where 1=1 ',[],function(err, rows){
+                if(err){
+                    logger.error(err);
+                    callback('error');
+                }else{
+                    page.totalCount=rows[0].count;
+                    page.pageCount=page.totalCount%page.pgsize==0?page.totalCount/page.pgsize:parseInt(page.totalCount/page.pgsize)+1;
+                    callback(rows1,page);
+                }
+            });
+        }
+
+    });
+
+}
+
+/**
+ * 修改数据状态
+ * @param id
+ * @param st
+ * @param callback
+ */
+infoService.uptSt=function(id,st,callback){
+
+}
+
+/**
+ * 获取所有记录总条数
+ */
+infoService.getTotal=(callback)=>{
+    pool.query('select count(*) as count from info  ', function (err, rows) {
+        if (err) {
+            // throw err;
+            logger.error(err);
+            callback('error');
+            return false;
+        }
+
+        callback(rows);
+    });
+
+
+}
+
+module.exports=infoService;

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><title>wiki hehear&#39;s wiki</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+
+    <meta name="keywords" content="wiki、hehear、博客、个人知识管理">
+
+
+    <meta name="description" content="hehear个人知识管理整合页面。">
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.ico">
+    <!--<link rel="apple-touch-icon" sizes="180x180"
+          href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32"
+          href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16"
+          href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/favicon-16x16.png">
+    <link rel="manifest" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/site.webmanifest">
+    <link rel="mask-icon" href="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/safari-pinned-tab.svg"
+          color="#f24e32">-->
+    <meta name="msapplication-TileColor" content="#f24e32">
+    <meta name="msapplication-config" content="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-favicon@19.9.6/browserconfig.xml">
+
+    <meta name="theme-color" content="#FFFFFF">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+    <script async src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-busuanzi@2.3/js/busuanzi.pure.mini.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/aplayer@1.7.0/dist/APlayer.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/meting@1.1.0/dist/Meting.min.js"></script>
+    <link rel="stylesheet" href="/css/page.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.min.js"></script>
+    <script>Vue.config.productionTip = !1, window.PAGE_TYPE = "Material X"</script>
+</head>
+<body class="docs">
+<div id="mobile-bar"><a class="menu-button fas fa-bars"></a>
+    <h2 class="nav-title">Wiki</h2><a class="logo" href="/"></a></div>
+<div id="header"><a id="logo" href="/wiki/"><img
+        src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@18.12.27/favicon/favicon.svg"> <span>hehear&#39;s wiki</span></a>
+    <ul id="nav">
+        <li class="nav blog"><a class="nav-link" href="//hehear.com"><i class="fas fa-rss fa-fw"></i>&nbsp;博客</a></li>
+        <li class="nav-dropdown-container projects"><a class="nav-link current"><i class="fas fa-fire fa-fw"></i>&nbsp;Wiki</a>
+
+        </li>
+        <li class="nav about"><a class="nav-link" href="//hehear.com/about/"><i
+                class="fas fa-info fa-fw"></i>&nbsp;关于</a></li>
+    </ul>
+</div>
+<div id="main" class="fix-sidebar">
+    <div class="sidebar">
+        <div class="sidebar-inner">
+            <ul class="main-menu"><br>
+                <h2><a href="/wiki/">hehear's wiki</a></h2>
+                <li class="nav blog"><a class="nav-link" href="//hehear.com"><i
+                        class="fas fa-rss fa-fw"></i>&nbsp;博客</a></li>
+                <li class="nav-dropdown-container projects"><a class="nav-link current"><i
+                        class="fas fa-fire fa-fw"></i>&nbsp;Wiki</a>
+
+                </li>
+                <li class="nav about"><a class="nav-link" href="//hehear.com/about/"><i class="fas fa-info fa-fw"></i>&nbsp;关于</a>
+                </li>
+            </ul>
+            <div class="list curent"><h2>wiki tree</h2>
+                <ul class="menu-root">
+
+                    {% for item in wikiList %}
+
+                    <li><a href="/wiki/article-wiki-{{ item.wiki_id }}.html" class="sidebar-link">{{ item.wiki_name }}</a></li>
+
+                    <ul class="menu-sub" >
+                        {% for i in item.childList %}
+                        <li><a class="section-link" data-scroll="" href="/wiki/article-wiki-{{ i.wiki_id }}.html">{{ i.wiki_name }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="footer"><a class="button" href="http://hehear.com" rel="external nofollow noopener noreferrer" target="_blank">
+                <i class="fab fa-java fa-fw"></i> 主页</a>
+            </div>
+        </div>
+    </div>
+    <div class="content Material X with-sidebar"><p><br></p>
+
+        {% if !wiki.wiki_content %}
+        <center class="large h1">
+            <blue>hehear</blue>&nbsp;<red>wiki</red>
+        </center>
+        <center><strong>个人知识整合编织页</strong></center>
+        <fancybox><br><img src="https://img.vim-cn.com/52/a54815c02ce232f11f54b2c547c1337828833c.png" alt=""><br>
+        </fancybox>
+        {% else %}
+
+        {% autoescape %}{{wiki.wiki_content}}{% endautoescape %}
+
+        {% endif %}
+
+        <br>
+        <br>
+        <h2 id="评论"><a href="#评论" class="headerlink" title="评论"><i class="fas fa-comments" aria-hidden="true"></i>评论</a>
+        </h2>
+        <section id="comments">
+            <div id="valine_container" class="valine_thread"><i class="fas fa-spinner fa-spin fa-fw"></i></div>
+        </section>
+        <script src="https://cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="https://cdn.jsdelivr.net/gh/xaoxuu/volantis@1.0.5/js/volantis.js"></script>
+        <script>
+            var GUEST_INFO = ['nick', 'mail', 'link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function (item) {
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '#valine_container',
+                notify: notify,
+                verify: verify,
+                guest_info: guest_info,
+
+                appId: "wcW7qLiXU8LXBEA9FB7cvKWf-gzGzoHsz",
+                appKey: "KfLYrkLqc1wB0Iq0GWCBqN51",
+                placeholder: "快来评论吧~",
+                pageSize: '10',
+                avatar: 'mp',
+                lang: 'zh-cn',
+                highlight: 'false'
+            })
+        </script>
+    </div>
+</div>
+<script src="/wiki/js/smooth-scroll.min.js"></script>
+
+<!--尾部部分 -->
+{% include "../footer.html" %}
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-xaoxuu@19.5/js/css.escape.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/xaoxuu/cdn-xaoxuu@19.5/js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fastclick@1.0.6/lib/fastclick.min.js"></script>
+<script>document.addEventListener("DOMContentLoaded", function () {
+    FastClick.attach(document.body)
+}, !1)</script>
+<script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+<script>let LAZY_LOAD_IMAGE = "";
+$("body").find("fancybox").find("img").each(function () {
+    var element = document.createElement("a");
+    $(element).attr("data-fancybox", "gallery");
+    $(element).attr("href", $(this).attr("src"));
+    /* 图片采用懒加载处理时,
+     * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+     * 那么此处将原本的属性名src替换为对应属性名data-original,
+     * 修改如下
+     */
+    if (LAZY_LOAD_IMAGE) {
+        $(element).attr("href", $(this).attr("data-original"));
+    }
+    $(this).wrap(element);
+});</script>
+</body>
+</html>

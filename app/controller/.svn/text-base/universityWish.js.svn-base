@@ -1,0 +1,27 @@
+const express = require('express');
+const logger = require('../../common/log4js');
+const router = express.Router();
+const schoolService=require('../service/schoolService');
+
+const resMsg=require('../model/resMsg');
+
+const pool = require('../../common/mysqlPool');
+
+
+
+router.use(function (req, res, next) {
+
+    next();
+});
+
+router.get('/', function (req, res) {
+    logger.info('访问universityWish首页');
+    res.render('universityWish/index');
+
+});
+
+
+
+
+//必须
+module.exports = router;

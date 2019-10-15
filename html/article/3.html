@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="generator" content="Hexo 3.8.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>windows搭建开发环境 | hehear</title>
+
+    <!--seo-->
+    <meta name="keywords" content="windows、开发环境、java、node">
+
+    <meta name="description" content="windows搭建开发环境，安装配置全过程。">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- meta -->
+
+
+    <!-- link -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.css">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.6.3/css/all.min.css">
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="/img/logo.ico">
+
+
+    <link rel="stylesheet" href="/css/style.css">
+
+
+    <script>
+        function setLoadingBarProgress(num) {
+            document.getElementById('loading-bar').style.width = num + "%";
+        }
+    </script>
+
+
+</head>
+
+<body>
+
+
+    <div class="cover-wrapper">
+
+        <!--封面 strt-->
+        <cover class="cover post half">
+
+
+            <h1 class="title">hehear</h1>
+
+            <!--搜索导航-->
+            <div class="m_search">
+                <form name="searchform" class="form u-search-form">
+                    <input type="text" class="input u-search-input" placeholder>
+                    <i class="icon fas fa-search fa-fw"></i>
+                </form>
+            </div>
+
+            <!--菜单导航 strt-->
+            <div class="menu navgation">
+                <ul class="h-list">
+
+
+                    <li>
+                        <a class="nav home" href="/" id="home">
+                            <i class="fas fa-rss fa-fw"></i>&nbsp;博文
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav home" href="/archives/" id="archives">
+                            <i class="fas fa-archive fa-fw"></i>&nbsp;归档
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav home" href="/history/" rel="nofollow" id="history">
+                            <i class="fas fa-history fa-fw"></i>&nbsp;版本
+                        </a>
+                    </li>
+
+                    <li>
+                        <a class="nav home" href="/about/" rel="nofollow" id="about">
+                            <i class="fas fa-info-circle fa-fw"></i>&nbsp;关于
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+            <!--菜单导航 end-->
+
+
+        </cover>
+        <!--封面 end-->
+
+        <!--头部导航菜单 strt-->
+        <header class="l_header pure">
+            <div id="loading-bar-wrapper">
+                <div id="loading-bar" class="pure"></div>
+            </div>
+
+            <div class="wrapper">
+                <div class="nav-main container container--flex">
+                    <a class="logo flat-box" href="/">
+
+                        hehear
+
+                    </a>
+                    <div class="menu navgation">
+                        <ul class="h-list">
+
+
+                            <li>
+                                <a class="nav flat-box" href="/" id="home">
+                                    <i class="fas fa-home fa-fw"></i>&nbsp;HOME
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="nav flat-box" href="/categories/" rel="nofollow" id="categories">
+                                    <i class="fas fa-folder-open fa-fw"></i>&nbsp;分类
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="nav flat-box" href="/tags/" rel="nofollow" id="tags">
+                                    <i class="fas fa-hashtag fa-fw"></i>&nbsp;标签
+                                </a>
+                            </li>
+
+                            <li>
+                                <a class="nav flat-box" href="/archives/" rel="nofollow" id="archives">
+                                    <i class="fas fa-archive fa-fw"></i>&nbsp;归档
+                                </a>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+
+                    <div class="m_search">
+                        <form name="searchform" class="form u-search-form">
+                            <input type="text" class="input u-search-input" placeholder="搜索">
+                            <i class="icon fas fa-search fa-fw"></i>
+                        </form>
+                    </div>
+
+                    <ul class="switcher h-list">
+
+                        <li class="s-search"><a class="fas fa-search fa-fw" href="javascript:void(0)"></a></li>
+
+                        <li class="s-menu"><a class="fas fa-bars fa-fw" href="javascript:void(0)"></a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-sub container container--flex">
+                    <a class="logo flat-box"></a>
+                    <ul class="switcher h-list">
+                        <li class="s-comment"><a class="flat-btn fas fa-comments fa-fw" href="javascript:void(0)"></a>
+                        </li>
+
+                        <li class="s-toc"><a class="flat-btn fas fa-list fa-fw" href="javascript:void(0)"></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <!--头部导航菜单 end-->
+
+        <!--手机菜单 strt-->
+        <aside class="menu-phone">
+            <header>
+                <nav class="menu navgation">
+                    <ul>
+
+
+                        <li>
+                            <a class="nav flat-box" href="/" id="home">
+                                <i class="fas fa-home fa-fw"></i>&nbsp;HOME
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav flat-box" href="/archives/" rel="nofollow" id="archives">
+                                <i class="fas fa-archive fa-fw"></i>&nbsp;文章归档
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav flat-box" href="/history/" id="history">
+                                <i class="fas fa-history fa-fw"></i>&nbsp;版本
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav flat-box" href="/friends/" rel="nofollow" id="friends">
+                                <i class="fas fa-link fa-fw"></i>&nbsp;我的友链
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav flat-box" href="#" rel="nofollow" id="#">
+                                <i class="fas fa-book fa-fw"></i>&nbsp;在建设中
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="nav flat-box" href="/about/" rel="nofollow" id="about">
+                                <i class="fas fa-info-circle fa-fw"></i>&nbsp;关于小站
+                            </a>
+                        </li>
+
+
+                    </ul>
+                </nav>
+            </header>
+        </aside>
+        <!--手机菜单 end-->
+        <script>
+            setLoadingBarProgress(40);
+        </script>
+
+    </div>
+
+
+    <div class="l_body">
+        <div class='body-wrapper'>
+            <div class="l_main">
+
+
+                <article id="post" class="post white-box article-type-post" itemscope itemprop="blogPost">
+
+
+                    <section class="meta">
+
+
+                        <div class="meta" id="header-meta">
+
+
+                            <h1 class="title">
+                                <a href="#">
+                                    windows搭建开发环境
+                                </a>
+                            </h1>
+
+
+                            <div class="new-meta-box">
+
+
+                                <div class="new-meta-item author">
+                                    <a href="http://hehear.com" rel="nofollow">
+
+                                        <img src="/img/avatar.png">
+
+                                        <p>cola</p>
+                                    </a>
+                                </div>
+
+
+                                <div class="new-meta-item date">
+                                    <a class="notlink">
+                                        <i class="fas fa-calendar-alt" aria-hidden="true"></i>
+                                        <p>2019-07-15</p>
+                                    </a>
+                                </div>
+
+
+                                <div class="new-meta-item category">
+                                    <a href="/article/list?id=3" rel="nofollow">
+                                        <i class="fas fa-folder-open" aria-hidden="true"></i>
+                                        <p>tools</p>
+                                    </a>
+                                </div>
+
+
+                                <div class="new-meta-item browse busuanzi">
+                                    <a class="notlink">
+                                        <i class="fas fa-eye" aria-hidden="true"></i>
+                                        <p>
+                                            <span id="busuanzi_value_page_pv">
+                                                <i class="fas fa-spinner fa-spin fa-fw" aria-hidden="true"></i>
+                                            </span>
+                                        </p>
+                                    </a>
+                                </div>
+
+
+                            </div>
+
+                            <hr>
+
+                        </div>
+                    </section>
+
+
+                    <section class="article typo">
+                        <div class="article-entry" itemprop="articleBody" id="content">
+
+                            <p>windows搭建开发环境，安装配置全过程。<br><a id="more"></a></p>
+                            <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3>
+                            <p>由于主力开发电脑macbook pro送去维修，原有的Windows电脑重新做系统了，在windows电脑上搭建开发环境，将搭建过程记录在此，以便以后参考。</p>
+                            <h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3>
+                            <p>安装了jdk1.8 64位，安装配置过程请做电梯出门左转，电梯入口：<a href="/http://hehear.com"
+                                    title="jdk安装配置">jdk安装配置</a></p>
+                            <h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js
+                            </h3>
+                            <p>参考菜鸟教程，地址如下：<a href="https://www.runoob.com/nodejs/nodejs-install-setup.html"
+                                    title="node下载安装" target="_blank" rel="noopener">node下载安装</a><br><a
+                                    href="http://hehear.com" title="node仓库配置">node仓库配置</a></p>
+                            <h3 id="安装jetbrains-toolbox-下载webstorm、idea"><a href="#安装jetbrains-toolbox-下载webstorm、idea"
+                                    class="headerlink"
+                                    title="安装jetbrains-toolbox(下载webstorm、idea)"></a>安装jetbrains-toolbox(下载webstorm、idea)
+                            </h3>
+                            <p>jetbrains官网下载，在toolbox下载开发工具，注册的话网上的注册码大多都失效了，就算不失效过段时间还要重新找，特别心累，jetbrains提供给学生免费的大礼包，所以可以用教育邮箱注册获得免费的jetbrains全家桶，如果嫌麻烦，可以去某宝去帮你注册。<br>webstorm、idea使用：<a
+                                    href="http://hehear.com"
+                                    title="idea导入eclipse新项目，配置maven并启动springboot项目">idea导入eclipse新项目，配置maven并启动springboot项目</a>
+                            </p>
+                            <h3 id="安装mysql数据库"><a href="#安装mysql数据库" class="headerlink"
+                                    title="安装mysql数据库"></a>安装mysql数据库</h3>
+                            <p>安装过程出门左转右手边，电梯直达：<a href="http://hehear.com"
+                                    title="windows安装mysql数据库">windows安装mysql数据库</a></p>
+                            <h3 id="安装mysql客户端"><a href="#安装mysql客户端" class="headerlink"
+                                    title="安装mysql客户端"></a>安装mysql客户端</h3>
+                            <p>因为在mac上习惯用mysql-workbench备份和导入数据，在windows上这次也抛弃了之前用的小海豚，官网下载:<a
+                                    href="https://dev.mysql.com/downloads/workbench/" title="mysql-workbench官网下载"
+                                    target="_blank" rel="noopener">mysql-workbench官网下载</a></p>
+                            <h3 id="安装git"><a href="#安装git" class="headerlink" title="安装git"></a>安装git</h3>
+                            <p>官网下载安装：<a href="https://gitforwindows.org/" title="git官网下载" target="_blank"
+                                    rel="noopener">git官网下载</a><br>git使用：<a href="http://hehear.com"
+                                    title="git使用介绍">git使用介绍</a></p>
+                            <h3 id="安装maven"><a href="#安装maven" class="headerlink" title="安装maven"></a>安装maven</h3>
+                            <p>下载安装并配置阿里仓库 电梯入口：<a href="http://hehear.com" title="maven安装配置">maven安装配置</a></p>
+                        </div>
+
+
+                        <section class="meta" id="footer-meta">
+                            <hr>
+                            <div class="new-meta-box">
+
+
+                                <div class="new-meta-item date" itemprop="dateUpdated"
+                                    datetime="2019-05-22T10:42:54+08:00">
+                                    <a class="notlink">
+                                        <i class="fas fa-clock" aria-hidden="true"></i>
+                                        <p>最后更新于 2019-07-15</p>
+                                    </a>
+                                </div>
+
+
+                                <div class="new-meta-item meta-tags"><a class="tag" href="/article/list?tagId=4"
+                                        rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>windows
+                                        </p></a>
+                                </div>
+
+                                <div class="new-meta-item meta-tags"><a class="tag" href="/article/list?tagId=5"
+                                        rel="nofollow"><i class="fas fa-hashtag" aria-hidden="true"></i>&nbsp;<p>tools
+                                        </p></a>
+                                </div>
+
+
+                                <!--分享 strt-->
+                                <div class="new-meta-item share -mob-share-list">
+                                    <div class="-mob-share-list share-body">
+
+
+                                        <a class="-mob-share-qq" title="QQ好友"
+                                            rel="external nofollow noopener noreferrer"
+                                            href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.runningcoder.top/2019/05/17/blog1/&title=docker分离部署springboot并外置静态文件 | RunningCoder&pics=/img/avatar.png&summary=打包springbootdocker部署springboot项目时，每次上传war/jar包耗时耗力，并且每次都要修改配置文件，所以用docker部署时，将springboot项目打包时将项目的代码、静态文件、配置文件、lib分离，每次升级只需上传修改的代码即可，同时将静态文件等外挂到服务器，修改时只需修改完重启容器应用即可，无需重新build镜像。">
+
+                                            <img src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qq.png">
+
+                                        </a>
+
+
+                                        <a class="-mob-share-qzone" title="QQ空间"
+                                            rel="external nofollow noopener noreferrer"
+                                            href="https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=http://hehear.com/2019/05/17/blog1/&title=docker分离部署springboot并外置静态文件 | RunningCoder&pics=/img/avatar.png&summary=打包springbootdocker部署springboot项目时，每次上传war/jar包耗时耗力，并且每次都要修改配置文件，所以用docker部署时，将springboot项目打包时将项目的代码、静态文件、配置文件、lib分离，每次升级只需上传修改的代码即可，同时将静态文件等外挂到服务器，修改时只需修改完重启容器应用即可，无需重新build镜像。">
+
+                                            <img
+                                                src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/qzone.png">
+
+                                        </a>
+
+
+                                        <a class="-mob-share-wechat" title="微信"
+                                            rel="external nofollow noopener noreferrer">
+
+                                            <img
+                                                src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/wechat.png">
+
+                                        </a>
+
+
+                                        <a class="-mob-share-weibo" title="微博"
+                                            rel="external nofollow noopener noreferrer"
+                                            href="http://service.weibo.com/share/share.php?url=http://blog.runningcoder.top/2019/05/17/blog1/&title=docker分离部署springboot并外置静态文件 | RunningCoder&pics=/img/avatar.png&summary=打包springbootdocker部署springboot项目时，每次上传war/jar包耗时耗力，并且每次都要修改配置文件，所以用docker部署时，将springboot项目打包时将项目的代码、静态文件、配置文件、lib分离，每次升级只需上传修改的代码即可，同时将静态文件等外挂到服务器，修改时只需修改完重启容器应用即可，无需重新build镜像。">
+
+                                            <img
+                                                src="https://cdn.jsdelivr.net/gh/xaoxuu/assets@19.1.9/logo/128/weibo.png">
+
+                                        </a>
+
+
+                                    </div>
+                                </div>
+                                <!--分享 end-->
+
+                            </div>
+                        </section>
+
+                        <!--上下篇文章 start-->
+                        <div class="prev-next">
+
+                            <section class="prev"><span class="art-item-left">
+                                    <h6><i class="fas fa-chevron-left" aria-hidden="true"></i>&nbsp;上一篇</h6>
+                                    <h4><a href="/article/2.html" rel="prev" title="hexo博客框架介绍与应用">hexo博客框架介绍与应用</a>
+                                    </h4>
+
+                                </span></section>
+
+
+                            <section class="next"><span class="art-item-right" aria-hidden="true">
+                                    <h6>下一篇&nbsp;<i class="fas fa-chevron-right" aria-hidden="true"></i></h6>
+                                    <h4><a href="/article/4.html" rel="prev"
+                                            title="hexo博客主题应用，获得博客静态页面">hexo博客主题应用，获得博客静态页面</a></h4>
+
+                                </span></section>
+
+                        </div>
+                        <!--上下篇文章 end-->
+
+                    </section>
+                </article>
+
+
+                <!-- 显示推荐文章和评论 -->
+
+
+                <article class="post white-box comments">
+                    <section class="article typo">
+                        <h4><i class="fas fa-comments fa-fw" aria-hidden="true"></i>&nbsp;评论</h4>
+
+
+                        <section id="comments">
+                            <div id="valine_container" class="valine_thread">
+                                <i class="fas fa-spinner fa-spin fa-fw"></i>
+                            </div>
+                        </section>
+
+                    </section>
+                </article>
+
+
+                <!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+                <script>
+                    window.subData = {
+                        title: "windows搭建开发环境",
+                        tools: true
+                    }
+                </script>
+
+
+            </div>
+            <aside class="l_side">
+
+                <!--底部导航图标 strt-->
+                <section class="widget author">
+                    <div class="content pure">
+
+                        <div class="avatar">
+                            <img class="avatar" src="/img/hear.png" style="width: 80%;height: 50%;">
+                        </div>
+
+
+                        <div class="social-wrapper">
+
+
+                            <a href="/atom.xml" class="social fas fa-rss flat-btn" target="_blank"
+                                rel="external nofollow noopener noreferrer">
+                            </a>
+
+
+                            <a href="mailto:me@xaoxuu.com" class="social fas fa-envelope flat-btn" target="_blank"
+                                rel="external nofollow noopener noreferrer">
+                            </a>
+
+
+                            <a href="https://github.com/xaoxuu" class="social fab fa-github flat-btn" target="_blank"
+                                rel="external nofollow noopener noreferrer">
+                            </a>
+
+
+                            <a href="https://music.163.com/#/user/home?id=63035382"
+                                class="social fas fa-headphones-alt flat-btn" target="_blank"
+                                rel="external nofollow noopener noreferrer">
+                            </a>
+
+
+                        </div>
+
+                    </div>
+                </section>
+                <!--底部导航图标 end-->
+
+                <!--目录导航 strt-->
+                <section class="widget toc-wrapper">
+
+                    <header class="pure">
+                        <div><i class="fas fa-list fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;本文目录</div>
+
+                        <div class="wrapper"><a class="s-toc rightBtn" rel="external nofollow noopener noreferrer"
+                                href="javascript:void(0)"><i class="fas fa-thumbtack fa-fw"></i></a></div>
+
+                    </header>
+
+                    <div class="content pure" id="menu">
+
+                    </div>
+
+
+                </section>
+                <!--目录导航 end-->
+
+            </aside>
+
+            <!--底部-->
+            <!--尾部部分 -->
+
+            <!--footer -->
+            <footer id="footer" class="clearfix">
+
+
+                <div class="social-wrapper">
+
+
+                    <a href="#" class="social fas fa-rss flat-btn" target="_blank"
+                        rel="external nofollow noopener noreferrer">
+                    </a>
+
+
+                    <a href="#" class="social fas fa-envelope flat-btn" target="_blank"
+                        rel="external nofollow noopener noreferrer">
+                    </a>
+
+
+                    <a href="#" class="social fab fa-github flat-btn" target="_blank"
+                        rel="external nofollow noopener noreferrer">
+                    </a>
+
+
+                    <a href="#" class="social fas fa-headphones-alt flat-btn" target="_blank"
+                        rel="external nofollow noopener noreferrer">
+                    </a>
+
+
+                </div>
+
+                <br>
+                <div>
+                    <p>@2019 | 总访问量为
+                        <span id="busuanzi_value_site_pv"><i class="fas fa-spinner fa-spin fa-fw"
+                                aria-hidden="true"></i></span>
+                        次</p>
+                </div>
+                <div>
+                    <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=23022502000011"
+                        target="_blank">
+                        <img style=" width: 20px;margin: 5px 0px -5px 5px;"
+                            src="//img.alicdn.com/tfs/TB1..50QpXXXXX7XpXXXXXXXXXX-40-40.png">
+                        <span style="height:20px;line-height:20px; color:#939393;">黑公网安备 23022502000011号</span>
+                    </a>
+                </div>
+            </footer>
+
+
+            <script>
+                setLoadingBarProgress(80);
+            </script>
+
+
+            <script>
+                setLoadingBarProgress(60);
+            </script>
+        </div>
+        <a class="s-top fas fa-arrow-up fa-fw" href='javascript:void(0)'></a>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+
+    <script>
+        setLoadingBarProgress(20);
+    </script>
+
+    <script>
+        var GOOGLE_CUSTOM_SEARCH_API_KEY = "";
+        var GOOGLE_CUSTOM_SEARCH_ENGINE_ID = "";
+        var ALGOLIA_API_KEY = "";
+        var ALGOLIA_APP_ID = "";
+        var ALGOLIA_INDEX_NAME = "";
+        var AZURE_SERVICE_NAME = "";
+        var AZURE_INDEX_NAME = "";
+        var AZURE_QUERY_KEY = "";
+        var BAIDU_API_ID = "";
+        var SEARCH_SERVICE = "hehear" || "hehear";
+        var ROOT = "/" || "/";
+        if (!ROOT.endsWith('/')) ROOT += '/';
+    </script>
+
+    <script src="//instant.page/1.2.2" type="module"
+        integrity="sha384-2xV8M5griQmzyiY3CDqh1dn4z3llDVqZDqzjzcY+jCBCk/a5fXJmuZ/40JJAPeoU"></script>
+
+    <script src="/js/scrollreveal.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            const $reveal = $('.reveal');
+            if ($reveal.length === 0) return;
+            const sr = ScrollReveal({
+                distance: 0
+            });
+            sr.reveal('.reveal');
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/node-waves@0.7.6/dist/waves.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            Waves.attach('.flat-btn', ['waves-button']);
+            Waves.attach('.float-btn', ['waves-button', 'waves-float']);
+            Waves.attach('.float-btn-light', ['waves-button', 'waves-float', 'waves-light']);
+            Waves.attach('.flat-box', ['waves-block']);
+            Waves.attach('.float-box', ['waves-block', 'waves-float']);
+            Waves.attach('.waves-image');
+            Waves.init();
+        });
+    </script>
+
+    <script async src="/js/busuanzi.pure.mini.js"></script>
+    <script src="/js/jquery.backstretch.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            if ('.cover') {
+                $('.cover').backstretch(
+                    ["/img/background.jpg"], {
+                        duration: "6000",
+                        fade: "2500"
+                    });
+            } else {
+                $.backstretch(
+                    ["/img/background.jpg"], {
+                        duration: "6000",
+                        fade: "2500"
+                    });
+            }
+        });
+    </script>
+
+
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/gh/xaoxuu/volantis@1/js/volantis.min.js"></script>
+
+
+    <script>
+        var GUEST_INFO = ['nick', 'mail', 'link'];
+        var guest_info = 'nick,mail,link'.split(',').filter(function (item) {
+            return GUEST_INFO.indexOf(item) > -1
+        });
+        var notify = 'false' == true;
+        var verify = 'false' == true;
+        var valine = new Valine();
+        valine.init({
+            el: '#valine_container',
+            notify: notify,
+            verify: verify,
+            guest_info: guest_info,
+
+            appId: "wcW7qLiXU8LXBEA9FB7cvKWf-gzGzoHsz",
+            appKey: "KfLYrkLqc1wB0Iq0GWCBqN51",
+            placeholder: "快来评论吧~",
+            pageSize: '10',
+            avatar: 'mp',
+            lang: 'zh-cn',
+            highlight: 'false'
+        })
+    </script>
+
+    <script src="/js/app.js"></script>
+
+    <script src="/js/search.js"></script>
+
+    <!-- 复制 -->
+    <script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+    <script>
+        let COPY_SUCCESS = "复制成功";
+        let COPY_FAILURE = "复制失败";
+        /*页面载入完成后，创建复制按钮*/
+        ! function (e, t, a) {
+            /* code */
+            var initCopyCode = function () {
+                var copyHtml = '';
+                copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+                copyHtml += '  <i class="fa fa-copy"></i><span>复制</span>';
+                copyHtml += '</button>';
+                $(".highlight .code pre").before(copyHtml);
+                var clipboard = new ClipboardJS('.btn-copy', {
+                    target: function (trigger) {
+                        return trigger.nextElementSibling;
+                    }
+                });
+
+                clipboard.on('success', function (e) {
+                    //您可以加入成功提示
+                    console.info('Action:', e.action);
+                    console.info('Text:', e.text);
+                    console.info('Trigger:', e.trigger);
+                    success_prompt(COPY_SUCCESS);
+                    e.clearSelection();
+                });
+                clipboard.on('error', function (e) {
+                    //您可以加入失败提示
+                    console.error('Action:', e.action);
+                    console.error('Trigger:', e.trigger);
+                    fail_prompt(COPY_FAILURE);
+                });
+            }
+            initCopyCode();
+
+        }(window, document);
+
+        /**
+         * 弹出式提示框，默认1.5秒自动消失
+         * @param message 提示信息
+         * @param style 提示样式，有alert-success、alert-danger、alert-warning、alert-info
+         * @param time 消失时间
+         */
+        var prompt = function (message, style, time) {
+            style = (style === undefined) ? 'alert-success' : style;
+            time = (time === undefined) ? 1500 : time * 1000;
+            $('<div>')
+                .appendTo('body')
+                .addClass('alert ' + style)
+                .html(message)
+                .show()
+                .delay(time)
+                .fadeOut();
+        };
+
+        // 成功提示
+        var success_prompt = function (message, time) {
+            prompt(message, 'alert-success', time);
+        };
+
+        // 失败提示
+        var fail_prompt = function (message, time) {
+            prompt(message, 'alert-danger', time);
+        };
+
+        // 提醒
+        var warning_prompt = function (message, time) {
+            prompt(message, 'alert-warning', time);
+        };
+
+        // 信息提示
+        var info_prompt = function (message, time) {
+            prompt(message, 'alert-info', time);
+        };
+    </script>
+
+    <!--目录-->
+
+    <script>
+        $(function () {
+            var padding = [0, 0, 0, 10, 30, 40, 50, 60, 70];
+            var lastIndex = 2;
+
+            var htmlContent = "";
+
+            $("#content").find('h1,h2,h3,h4,h5,h6').each(function (index, element) {
+                var tagName = $(this).get(0).tagName;
+
+                var tagIndex = parseInt(tagName.charAt(1));
+
+
+                if (tagName.substr(0, 1).toUpperCase() == "H") {
+                    var contentH = $(this).text(); //获取内容
+
+                    var hrefContent = contentH.replace("              ", "");
+                    hrefContent = hrefContent.replace('. ', '-');
+                    hrefContent = hrefContent.replace(' ', '');
+                    hrefContent = hrefContent.replace('(', '');
+                    hrefContent = hrefContent.replace(')', '');
+                    hrefContent = hrefContent.replace(' ', '-');
+                    hrefContent = hrefContent.replace('.', '-');
+
+                    if (parseInt(tagIndex) > parseInt(lastIndex)) {
+                        htmlContent += "<ol class=\"toc-child\">";
+                    }
+                    if (parseInt(tagIndex) < parseInt(lastIndex)) {
+                        htmlContent += "</ol>  </li>";
+                    }
+
+                    if (parseInt(tagIndex) == parseInt(lastIndex)) {
+                        htmlContent += "</li>";
+                    }
+
+                    htmlContent += "<li class=\"toc-item toc-level-" + tagIndex +
+                        "\"><a class=\"toc-link\" href=\"#" + hrefContent +
+                        "\"><span class=\"toc-text\">" + contentH + "</span></a>";
+
+
+                    lastIndex = tagIndex;
+
+                    //console.log("hrefContent:"+hrefContent);
+
+                    //$("#menu").append("<a class=\"toc-link\" href='#" + hrefContent + "'  style=\"padding-left:"+padding[tagIndex]+"px; display:block;\">" + contentH + "</a>"); //在目标DIV中添加内容
+                }
+            });
+
+
+            $("#menu").append(htmlContent);
+
+        });
+    </script>
+
+    <script>
+        setLoadingBarProgress(100);
+    </script>
+
+
+    <!-- fancybox -->
+    <script src="https://cdn.jsdelivr.net/gh/fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <script>
+        let LAZY_LOAD_IMAGE = "";
+        $(".article-entry").find("fancybox").find("img").each(function () {
+            var element = document.createElement("a");
+            $(element).attr("data-fancybox", "gallery");
+            $(element).attr("href", $(this).attr("src"));
+            /* 图片采用懒加载处理时,
+             * 一般图片标签内会有个属性名来存放图片的真实地址，比如 data-original,
+             * 那么此处将原本的属性名src替换为对应属性名data-original,
+             * 修改如下
+             */
+            if (LAZY_LOAD_IMAGE) {
+                $(element).attr("href", $(this).attr("data-original"));
+            }
+            $(this).wrap(element);
+        });
+    </script>
+
+    <script>
+        setLoadingBarProgress(100);
+    </script>
+</body>
+
+</html>

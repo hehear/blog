@@ -1,0 +1,158 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+  <title>Bracket Responsive Bootstrap3 Admin</title>
+
+  <link href="/kj/css/style.default.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="/kj/js/html5shiv.js"></script>
+  <script src="/kj/js/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+
+<body class="signin">
+
+
+<section id='app'>
+  
+    <div class="signinpanel">
+
+        <div class="row ">
+
+            <div class="col-xs-12 ">
+
+                <div class="panel panel-dark panel-alt widget-time">
+                    <div class="panel-heading text-center">
+                        <i class="glyphicon glyphicon-eye-close"></i>
+                    </div>
+
+                    <div class="panel-body text-center " style="border-bottom: #b3b3b3;border-bottom-style: dashed">
+                        <h3>闭眼，和周公去约会吧！</h3>
+                    </div>
+
+                    <div class="panel-body text-center">
+                        <h3 class="today">${currtDate}</h3>
+                    </div><!-- panel-body -->
+                </div><!-- panel -->
+            </div>
+
+        </div><!-- row -->
+
+        <div class="row">
+
+            <div class="col-xs-6 ">
+                <button type="button" class="btn btn-info btn-lg" style="width: 100%"  v-on:click="sleepstill()"> 马上睡 </button>
+            </div>
+            <div class="col-xs-6 ">
+                <button type="button" class="btn btn-warning btn-lg" style="width: 100%"  v-on:click="towork()"> 还能敲代码 </button>
+            </div>
+            
+        </div><!-- row -->
+        
+        <!--<div class="signup-footer">-->
+            <!--<div class="pull-left">-->
+                <!--&copy; 2019. All Rights Reserved.-->
+            <!--</div>-->
+            <!--<div class="pull-right">-->
+                <!--Created By: <a href="#" target="_blank">RunningCoder</a>-->
+            <!--</div>-->
+        <!--</div>-->
+        
+    </div><!-- signin -->
+  
+</section>
+
+
+<script src="/kj/js/jquery-1.11.1.min.js"></script>
+<script src="/kj/js/jquery-migrate-1.2.1.min.js"></script>
+<script src="/kj/js/bootstrap.min.js"></script>
+<script src="/kj/js/modernizr.min.js"></script>
+<script src="/kj/js/jquery.sparkline.min.js"></script>
+<script src="/kj/js/jquery.cookies.js"></script>
+
+<script src="/kj/js/toggles.min.js"></script>
+<script src="/kj/js/retina.min.js"></script>
+
+<script src="/kj/js/custom.js"></script>
+<script src="/js/vue.min.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/modal_ext.js"></script>
+{% include "common/modal_confirm.html" %}
+{% include "common/modal_msg.html" %}
+{% include "common/modal_wait.html" %}
+{% include "common/modal_md.html" %}
+<script>
+    jQuery(document).ready(function(){
+        
+        // Please do not use the code below
+        // This is for demo purposes only
+        var c = jQuery.cookie('change-skin');
+        if (c && c == 'greyjoy') {
+            jQuery('.btn-success').addClass('btn-orange').removeClass('btn-success');
+        } else if(c && c == 'dodgerblue') {
+            jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
+        } else if (c && c == 'katniss') {
+            jQuery('.btn-success').addClass('btn-primary').removeClass('btn-success');
+        }
+
+
+    });
+
+    var vm = new Vue({
+        el:'#app',
+        delimiters: ['${', '}'],
+        data:{
+            currtDate:'6:50AM PST'
+        },
+        methods:{
+
+             timeFormat:function() {
+
+                 var date = new Date();
+                 var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+                 var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+                 var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+
+                 // 拼接
+                 vm.currtDate= hours+":"+minutes+":"+seconds;
+            },
+            dateFormat:function() {
+
+                var date = new Date();
+                var year=date.getFullYear();
+                var month= date.getMonth()+1<10 ? "0"+(date.getMonth()+1) : date.getMonth()+1;
+                var day=date.getDate()<10 ? "0"+date.getDate() : date.getDate();
+
+                var hours=date.getHours()<10 ? "0"+date.getHours() : date.getHours();
+                var minutes=date.getMinutes()<10 ? "0"+date.getMinutes() : date.getMinutes();
+                var seconds=date.getSeconds()<10 ? "0"+date.getSeconds() : date.getSeconds();
+                // 拼接
+                return year+"-"+month+"-"+day+" "+hours+":"+minutes+":"+seconds;
+            },
+            towork:function(){
+
+                $.com_modal_info.show({title:'严重警告',content:'小心秃顶，敲两行就得了，赶紧睡觉！！！！！',callback:function(){
+                        window.location.href="/";
+                    }});
+            },
+            sleepstill:function () {
+
+                $.com_modal_info.show("晚安，好梦！");
+            }
+
+        }
+    });
+    vm.timeFormat();
+</script>
+
+</body>
+</html>

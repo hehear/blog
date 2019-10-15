@@ -1,0 +1,18 @@
+const express = require('express');
+const logger = require('../../common/log4js');
+const router = express.Router();
+
+router.get('/', function (req, res) {
+    logger.info('访问target首页');
+    res.render('target/index');
+
+});
+
+router.get('/log', function (req, res) {
+    logger.info('登陆******');
+    // res.render('user/index');
+
+});
+
+//必须
+module.exports = router;

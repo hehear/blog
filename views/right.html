@@ -1,0 +1,138 @@
+<!--主体内容右侧导航-->
+<aside class="l_side">
+
+    <!-- 图片 -->
+    <section class="widget author">
+        <div class="content pure">
+
+            <div class="avatar">
+                <img class="avatar" src="/img/hear.png" style="width: 80%;height: 50%;">
+            </div>
+
+
+            <div class="social-wrapper">
+
+
+                <a href="#" class="social fas fa-rss flat-btn" target="_blank"
+                   rel="external nofollow noopener noreferrer">
+                </a>
+
+
+                <a href="#" class="social fas fa-envelope flat-btn" target="_blank"
+                   rel="external nofollow noopener noreferrer">
+                </a>
+
+
+                <a href="#" class="social fab fa-github flat-btn" target="_blank"
+                   rel="external nofollow noopener noreferrer">
+                </a>
+
+
+                <a href="#"
+                   class="social fas fa-headphones-alt flat-btn" target="_blank"
+                   rel="external nofollow noopener noreferrer">
+                </a>
+
+
+            </div>
+
+        </div>
+    </section>
+
+    <!--导航-->
+    <section class="widget grid">
+
+        <header class="pure">
+            <div><i class="fas fa-map-signs fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;站内导航</div>
+
+        </header>
+
+        <div class="content pure">
+            <ul class="grid navgation">
+
+                <li><a class="flat-box" title="/" href="/" id="home">
+
+                    <i class="fas fa-clock fa-fw" aria-hidden="true"></i>
+
+                    近期文章
+                </a></li>
+
+                <li><a class="flat-box" title="/archives/" href="/archives/" rel="nofollow" id="archives">
+
+                    <i class="fas fa-archive fa-fw" aria-hidden="true"></i>
+
+                    文章归档
+                </a></li>
+
+                <li><a class="flat-box" title="/history/" href="/history/" id="history">
+
+                    <i class="fas fa-history fa-fw" aria-hidden="true"></i>
+
+                    版本历史
+                </a></li>
+
+                <li><a class="flat-box" title="/friends/" href="/friends/" rel="nofollow" id="friends">
+
+                    <i class="fas fa-link fa-fw" aria-hidden="true"></i>
+
+                    我的友链
+                </a></li>
+
+                <li>
+                    <a class="nav flat-box" href="/wiki/" rel="nofollow" id="#">
+                        <i class="fas fa-book fa-fw"></i>&nbsp;wiki
+                    </a>
+                </li>
+
+
+                <li><a class="flat-box" title="/about/" href="/about/" rel="nofollow" id="about">
+
+                    <i class="fas fa-info-circle fa-fw" aria-hidden="true"></i>
+
+                    关于小站
+                </a></li>
+
+            </ul>
+        </div>
+    </section>
+
+    <!--分类-->
+    <section class="widget category">
+
+        <header class="pure">
+            <div><i class="fas fa-folder-open fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;文章分类</div>
+
+            <a class="rightBtn" rel="nofollow" href="/categories/" title="categories/">
+                <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+
+        </header>
+
+        <div class="content pure">
+            <ul class="entry">
+                {% for item in articleTypeList %}
+                <li><a class="flat-box" title="{{ item.ARTICLE_TP_NM }}" href="/article-type-{{ item.ARTICLE_TP_ID }}.html"><div class="name">{{ item.ARTICLE_TP_NM }}</div><div class="badge">({{ item.ARTICLE_TP_NO }})</div></a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </section>
+
+    <!-- 标签 -->
+    <section class="widget tagcloud">
+
+        <header class="pure">
+            <div><i class="fas fa-fire fa-fw" aria-hidden="true"></i>&nbsp;&nbsp;热门标签</div>
+
+            <a class="rightBtn" rel="nofollow" href="/tags/" title="tags/">
+                <i class="fas fa-expand-arrows-alt fa-fw"></i></a>
+
+        </header>
+
+        <div class="content pure">
+
+            {% for item in articleTagList %}
+            <a href="/article-tag-{{ item.TAG_ID }}.html" style="font-size: 14px; color: #999">{{ item.TAG_NM }}</a>
+            {% endfor %}
+        </div>
+    </section>
+
+</aside>

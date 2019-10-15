@@ -1,0 +1,13 @@
+const express = require('express');
+const logger = require('../../common/log4js');
+const router = express.Router();
+// const schoolService=require('../service/schoolService');
+const resMsg=require('../model/resMsg');
+
+router.get('/', function (req, res) {
+    logger.info('访问articleComment首页');
+    res.render('articleComment/index');
+});
+
+//必须
+module.exports = router;

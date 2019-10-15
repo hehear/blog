@@ -1,0 +1,27 @@
+{
+  "name": "sy",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.15.4",
+    "body-parser": "1.18.2",
+    "mysql": "2.15.0",
+    "log4js": "2.4.1",
+    "moment": "2.23.0",
+    "swig": "1.4.2",
+    "express-session": "1.15.6",
+    "multer": "1.4.1",
+    "cookie-parser": "1.4.3"
+  },
+  "description": "",
+  "dependencies": {
+    "elasticsearch": "^16.1.1",
+    "node-schedule": "^1.3.2"
+  }
+}

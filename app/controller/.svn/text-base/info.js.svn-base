@@ -1,0 +1,19 @@
+const express = require('express');
+const logger = require('../../common/log4js');
+const router = express.Router();
+// const schoolService=require('../service/schoolService');
+const resMsg=require('../model/resMsg');
+
+router.use(function (req, res, next) {
+
+    next();
+});
+
+router.get('/', function (req, res) {
+    logger.info('访问消息首页');
+    res.render('info/index');
+
+});
+
+//必须
+module.exports = router;

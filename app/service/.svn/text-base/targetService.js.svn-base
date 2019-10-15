@@ -1,0 +1,375 @@
+const logger = require('../../common/log4js');
+const pool = require('../../common/mysqlPool');
+
+const targetService={};
+
+/**
+ * 新增
+ * @param news
+ * @param callback
+ */
+targetService.add=function(filter,callback){
+
+    logger.info('add target :{}',filter);
+
+    var  addSql = 'INSERT INTO target (target_name,target_content,target_complete_content,target_date,target_tp,user_id,update_tm,update_user,st) VALUES (?,?,?,?,?,?,?,?,?)';
+    var  addSqlParams = [filter.target_name,filter.target_content,filter.target_complete_content,filter.target_date,filter.target_tp,filter.uid,new Date(),filter.uid,filter.st];
+
+    pool.query(addSql,addSqlParams,function (err, result) {
+
+        if(err){
+            logger.info('新增报错',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 删除
+ * @param id
+ * @param callback
+ */
+targetService.delete=function(id,callback){
+
+    var  deleteSql = 'delete from target where id=? ';
+    var  deleteSqlParams = [id];
+
+    pool.query(deleteSql,deleteSqlParams,function (err, result) {
+
+        if(err){
+            logger.info('删除出错',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 修改
+ * @param news
+ * @param callback
+ */
+targetService.upt=function(filter,callback){
+
+    var  uptSql = 'update target set target_name=?,target_content=?,target_complete_content=?,target_date=?,target_tp=?,update_tm=?,update_user=?,st=? where id=?';
+    var  uptSqlParams = [filter.target_name,filter.target_content,filter.target_complete_content,filter.target_date,filter.target_tp,new Date(),filter.uid,filter.st,filter.id];
+
+    pool.query(uptSql,uptSqlParams,function (err, result) {
+
+        if(err){
+            console.log('修改出错',err.message);
+            return;
+        }
+
+        //回掉
+        callback(err,result);
+
+    });
+
+}
+
+/**
+ * 获取符合条件的数据条数
+ * @param news
+ * @param callback
+ */
+targetService.getTotal=function(filter,callback){
+
+}
+
+
+/**
+ * 分页查询数据
+ * @param news 条件
+ * @param page 分页信息
+ * @param callback
+ */
+targetService.query4Page=function(filter,page,callback){
+
+    var querySql='select * from target WHERE 1=1  ';
+
+    var querySqlParams=[];
+
+    if(filter.uid){
+        querySql+=' and  user_id = ?';
+        querySqlParams.push(filter.uid)
+    }
+
+    if(filter.target_tp){
+        querySql+=' and target_tp=? ';
+        querySqlParams.push(filter.target_tp);
+    }
+
+    if(filter.target_name){
+        querySql+=' and target_name like ?  ';
+        querySqlParams.push("%"+filter.target_name+"%");
+
+    }
+
+    if(filter.target_content){
+        querySql+=' and target_content like ?  ';
+        querySqlParams.push("%"+filter.target_content+"%");
+
+    }
+
+    if(filter.st){
+        querySql+=' and st =? ';
+        querySqlParams.push(filter.st);
+
+    }
+
+    if(filter.info_remind_st){
+        querySql+=' and info_remind_st =? ';
+        querySqlParams.push(filter.info_remind_st);
+
+    }
+
+    if(filter.strtDt && filter.endDt){
+        querySql+=' and target_date  between ? and ? ';
+        querySqlParams.push(filter.strtDt);
+        querySqlParams.push(filter.endDt);
+
+    }
+
+    var queryCountSql=querySql;
+
+    var queryCountSqlParams=querySqlParams;
+
+    querySql+=' order by id desc ';
+
+    if(page.pgindex){
+        querySql+=' limit ?,?';
+
+        querySqlParams.push((page.pgindex-1)*page.pgsize);
+        querySqlParams.push(page.pgsize);
+
+    }
+
+    pool.query(querySql, querySqlParams, function (err, rows1) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            queryCountSql="select count(*) as count from ( "+queryCountSql+" ) tgt";
+
+            pool.query(queryCountSql,queryCountSqlParams,function(err, rows){
+                //logger.info(rows);
+                if(err){
+                    logger.error(err);
+                    callback('error');
+                }else{
+                    page.totalCount=rows[0].count;
+                    page.pageCount=page.totalCount%page.pgsize==0?page.totalCount/page.pgsize:parseInt(page.totalCount/page.pgsize)+1;
+                    callback(rows1,page);
+                }
+            });
+        }
+
+    });
+
+}
+
+/**
+ * 查询当前时间所有有效的任务类型，以及完成任务类型任务的个数
+ * @param callback
+ * @return target_tp 任务类型
+ * @return count 任务类型的个数
+ * @return complete_count 任务类型完成的个数
+ */
+targetService.queryTargets=function(filter,callback){
+
+    var querySqlParams=[];
+    if(filter.uid){
+        var sql=' and user_id = ?';
+        querySqlParams.push(filter.uid)
+    }
+
+    var querySql='SELECT ' +
+        '    a.target_tp,' +
+        '    COUNT(a.target_tp) AS count,' +
+        '    SUM(CASE ' +
+        '        WHEN complete_st = \'2\' THEN 1' +
+        '        ELSE 0 ' +
+        '    END) AS complete_count ' +
+        'FROM ' +
+        '    life.target a ' +
+        'WHERE ' +
+        '    st = \'1\'' +
+        sql+
+        ' AND target_date BETWEEN DATE_ADD(CURDATE(), INTERVAL 0 HOUR) AND DATE_ADD(CURDATE(), INTERVAL 23 HOUR) ' +
+        'GROUP BY a.target_tp ' ;
+
+
+    pool.query(querySql,querySqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            callback(rows);
+
+        }
+
+    });
+
+}
+
+/**
+ * 根根任务类型查询当天任务
+ * @param filter.target_tp任务类型
+ */
+targetService.queryTargetsByTp=function(filter,callback){
+
+    var querySql='SELECT * ' +
+        'FROM ' +
+        '    life.target a ' +
+        'WHERE ' +
+        '    st = \'1\'' +
+        ' AND target_date BETWEEN DATE_ADD(CURDATE(), INTERVAL 0 HOUR) AND DATE_ADD(CURDATE(), INTERVAL 23 HOUR) ' +
+        ' AND target_tp=? ' ;
+
+    var querySqlParams=[filter.target_tp];
+
+    if(filter.uid){
+        querySql+=' and  user_id = ?';
+        querySqlParams.push(filter.uid)
+    }
+
+    pool.query(querySql,querySqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            callback(rows);
+
+        }
+
+    });
+
+}
+
+/**
+ * 修改任务状态
+ * @param callback
+ */
+targetService.updtCompleteSt=function(filter,callback){
+
+    var updtSql=' update life.target set  complete_st =? where id=? ' ;
+    var updtSqlParams=[filter.complete_st,filter.id];
+
+    pool.query(updtSql,updtSqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            var result='';
+            if(filter.complete_st==1){
+                result='打卡成功！';
+            }else if(filter.complete_st==2){
+                result='恭喜完成任务！';
+            }else if(filter.complete_st==3){
+                result='很遗憾，下次任务加油！';
+            }
+            callback(result);
+
+        }
+
+    });
+
+}
+
+/**
+ * 修改任务信息提醒状态
+ * @param callback
+ */
+targetService.updtInfoRemindSt=function(filter,callback){
+
+    var updtSql=' update life.target set  info_remind_st =? where id=? ' ;
+    var updtSqlParams=[filter.info_remind_st,filter.id];
+
+    pool.query(updtSql,updtSqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+
+            callback(rows.affectedRows);
+
+        }
+
+    });
+
+}
+
+/**
+ * 修改任务状态，将今天未完成的任务置为未完成
+ * @param callback
+ */
+targetService.updtUnCompleteSt=function(callback){
+
+    var updtSql=' update life.target set  complete_st =3 where complete_st!=2 ' +
+        'and target_date BETWEEN DATE_ADD(CURDATE(), INTERVAL 0 HOUR) AND DATE_ADD(CURDATE(), INTERVAL 23 HOUR)' ;
+
+    pool.query(updtSql, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            //logger.info(rows.affectedRows);
+            callback(rows.affectedRows);
+        }
+
+    });
+
+}
+
+/**
+ * 修改任务完成情况说明
+ * @param callback
+ */
+targetService.updtCompleteContent=function(filter,callback){
+
+    var updtSql=' update life.target set  target_complete_content =? where id=? ' ;
+
+    var updtSqlParams=[filter.target_complete_content,filter.id];
+
+    pool.query(updtSql,updtSqlParams, function (err, rows) {
+        if (err) {
+            logger.error(err);
+            callback('error');
+        }else{
+
+            callback(rows);
+
+        }
+
+    });
+
+}
+
+/**
+ * 修改数据状态
+ * @param id
+ * @param st
+ * @param callback
+ */
+targetService.uptSt=function(id,st,callback){
+
+}
+
+
+module.exports=targetService;
