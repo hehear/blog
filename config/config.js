@@ -3,7 +3,6 @@
  **/
 const config={
     port:3000,
-    // www:'www.life.runningcoder.top',
     www:'127.0.0.1',
     jwt:{
         //需要鉴权的url列表
