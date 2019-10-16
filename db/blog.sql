@@ -18,7 +18,7 @@ SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for article
+-- Table structure for article 文章表
 -- ----------------------------
 DROP TABLE IF EXISTS `article`;
 CREATE TABLE `article` (
@@ -40,7 +40,7 @@ CREATE TABLE `article` (
 ) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
--- Table structure for article_tag
+-- Table structure for article_tag 文章标签关系表
 -- ----------------------------
 DROP TABLE IF EXISTS `article_tag`;
 CREATE TABLE `article_tag` (
@@ -52,7 +52,7 @@ CREATE TABLE `article_tag` (
 ) ENGINE=InnoDB AUTO_INCREMENT=105 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for article_type
+-- Table structure for article_type 文章类型
 -- ----------------------------
 DROP TABLE IF EXISTS `article_type`;
 CREATE TABLE `article_type` (
@@ -64,7 +64,7 @@ CREATE TABLE `article_type` (
 ) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for article_wiki
+-- Table structure for article_wiki 文章wiki知识树
 -- ----------------------------
 DROP TABLE IF EXISTS `article_wiki`;
 CREATE TABLE `article_wiki` (
@@ -80,7 +80,7 @@ CREATE TABLE `article_wiki` (
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for comment
+-- Table structure for comment 评论表
 -- ----------------------------
 DROP TABLE IF EXISTS `comment`;
 CREATE TABLE `comment` (
@@ -99,7 +99,7 @@ CREATE TABLE `comment` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for history
+-- Table structure for history 版本历史表
 -- ----------------------------
 DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history` (
@@ -114,7 +114,7 @@ CREATE TABLE `history` (
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for menu
+-- Table structure for menu 菜单表
 -- ----------------------------
 DROP TABLE IF EXISTS `menu`;
 CREATE TABLE `menu` (
@@ -127,7 +127,7 @@ CREATE TABLE `menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
--- Table structure for role
+-- Table structure for role  角色表
 -- ----------------------------
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `role` (
@@ -139,7 +139,7 @@ CREATE TABLE `role` (
 ) ENGINE=InnoDB AUTO_INCREMENT=671 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
--- Table structure for role_menu
+-- Table structure for role_menu 角色菜单表
 -- ----------------------------
 DROP TABLE IF EXISTS `role_menu`;
 CREATE TABLE `role_menu` (
@@ -151,7 +151,7 @@ CREATE TABLE `role_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Table structure for tag
+-- Table structure for tag 标签表
 -- ----------------------------
 DROP TABLE IF EXISTS `tag`;
 CREATE TABLE `tag` (
@@ -163,7 +163,7 @@ CREATE TABLE `tag` (
 ) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for user 用户表
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
@@ -176,7 +176,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ----------------------------
--- Table structure for user_role
+-- Table structure for user_role  用户角色关系表
 -- ----------------------------
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
