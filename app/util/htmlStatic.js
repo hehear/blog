@@ -16,6 +16,10 @@ const htmlStaticRules = {
         action: 'article/list?tagId={1}',
         file: '/article/article-tag-{1}.html'
     },
+    '^/article-page-(\\d+)$': {
+        action: 'page?pgindex={1}',
+        file: '/article/article-page-{1}.html'
+    },
     '^/wiki/article-wiki-(\\d+)$': {
         action: 'wiki?wikiId={1}',
         file: '/wiki/article-wiki-{1}.html'

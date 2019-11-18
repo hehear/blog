@@ -3,79 +3,6 @@ const pool = require('../../config/mysqlPool');
 
 const articleService={};
 
-/**
- * 新增
- * @param news
- * @param callback
- */
-articleService.add=function(filter,callback){
-
-    logger.info('add target :{}',filter);
-
-    var  addSql = 'INSERT INTO target (target_name,target_content,target_complete_content,target_date,target_tp,user_id,update_tm,update_user,st) VALUES (?,?,?,?,?,?,?,?,?)';
-    var  addSqlParams = [filter.target_name,filter.target_content,filter.target_complete_content,filter.target_date,filter.target_tp,filter.uid,new Date(),filter.uid,filter.st];
-
-    pool.query(addSql,addSqlParams,function (err, result) {
-
-        if(err){
-            logger.info('新增报错',err.message);
-            return;
-        }
-
-        //回掉
-        callback(err,result);
-
-    });
-
-}
-
-/**
- * 删除
- * @param id
- * @param callback
- */
-articleService.delete=function(id,callback){
-
-    var  deleteSql = 'delete from target where id=? ';
-    var  deleteSqlParams = [id];
-
-    pool.query(deleteSql,deleteSqlParams,function (err, result) {
-
-        if(err){
-            logger.info('删除出错',err.message);
-            return;
-        }
-
-        //回掉
-        callback(err,result);
-
-    });
-
-}
-
-/**
- * 修改
- * @param news
- * @param callback
- */
-articleService.upt=function(filter,callback){
-
-    var  uptSql = 'update target set target_name=?,target_content=?,target_complete_content=?,target_date=?,target_tp=?,update_tm=?,update_user=?,st=? where id=?';
-    var  uptSqlParams = [filter.target_name,filter.target_content,filter.target_complete_content,filter.target_date,filter.target_tp,new Date(),filter.uid,filter.st,filter.id];
-
-    pool.query(uptSql,uptSqlParams,function (err, result) {
-
-        if(err){
-            console.log('修改出错',err.message);
-            return;
-        }
-
-        //回掉
-        callback(err,result);
-
-    });
-
-}
 
 /**
  * 获取符合条件的数据条数
@@ -89,62 +16,22 @@ articleService.getTotal=function(filter,callback){
 
 /**
  * 分页查询数据
- * @param news 条件
  * @param page 分页信息
  * @param callback
  */
-articleService.query4Page=function(filter,page,callback){
+articleService.query4Page=function(page,callback){
 
-    var querySql='select * from target WHERE 1=1  ';
+    var querySql='select * from article WHERE 1=1  ';
 
     var querySqlParams=[];
 
-    if(filter.uid){
-        querySql+=' and  user_id = ?';
-        querySqlParams.push(filter.uid)
-    }
-
-    if(filter.target_tp){
-        querySql+=' and target_tp=? ';
-        querySqlParams.push(filter.target_tp);
-    }
-
-    if(filter.target_name){
-        querySql+=' and target_name like ?  ';
-        querySqlParams.push("%"+filter.target_name+"%");
-
-    }
-
-    if(filter.target_content){
-        querySql+=' and target_content like ?  ';
-        querySqlParams.push("%"+filter.target_content+"%");
-
-    }
-
-    if(filter.st){
-        querySql+=' and st =? ';
-        querySqlParams.push(filter.st);
-
-    }
-
-    if(filter.info_remind_st){
-        querySql+=' and info_remind_st =? ';
-        querySqlParams.push(filter.info_remind_st);
-
-    }
-
-    if(filter.strtDt && filter.endDt){
-        querySql+=' and target_date  between ? and ? ';
-        querySqlParams.push(filter.strtDt);
-        querySqlParams.push(filter.endDt);
-
-    }
 
     var queryCountSql=querySql;
 
     var queryCountSqlParams=querySqlParams;
 
     querySql+=' order by id desc ';
+
 
     if(page.pgindex){
         querySql+=' limit ?,?';
@@ -217,6 +104,13 @@ articleService.queryArticles=function(filter,callback){
 
     querySql+=" order by a.id desc ";
 
+    var querySql1 = querySql ;
+
+    var page = filter.page;
+    if(page.pgindex){
+        querySql+=" limit "+(page.pgindex-1)*page.pgsize+","+page.pgsize;
+
+    }
 
     pool.query(querySql, function (err, rows) {
         if (err) {
@@ -251,8 +145,24 @@ articleService.queryArticles=function(filter,callback){
 
                         if(size==cnt){
 
-                            //console.log(rows);
-                            callback(err,rows);
+                            var queryCountSql="select count(*) as count from ( "+querySql1+" ) tgt";
+
+                            pool.query(queryCountSql,function(err, rows2){
+                                //logger.info(rows);
+                                if(err){
+                                    logger.error(err);
+                                    callback('error');
+                                }else{
+                                    page.totalCount=rows2[0].count;
+                                    page.pageCount=page.totalCount%page.pgsize==0?page.totalCount/page.pgsize:parseInt(page.totalCount/page.pgsize)+1;
+                                    page.pgNextIndex = (parseInt(page.pgindex)+1) > page.pageCount ? null : parseInt(page.pgindex)+1;
+                                    page.pgLastIndex = parseInt(page.pgindex)-1==0 ? null : parseInt(page.pgindex)-1;
+
+                                    //console.log(rows);
+                                    callback(err,rows,page);
+                                }
+                            });
+
 
                         }
                     });
