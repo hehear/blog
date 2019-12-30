@@ -3,8 +3,8 @@
  **/
 const config = {
     //是否开启静态化
-    enable:false,
+    enable:true,
     //静态文件存放目录
-    bashPath:'/Users/runningcoder/Desktop/node/hexo-blog/html',
+    bashPath:'/Users/runningcoder/git/blog/html',
 };
 module.exports = config;

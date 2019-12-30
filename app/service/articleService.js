@@ -90,7 +90,7 @@ articleService.queryArticles=function(filter,callback){
 
     }
 
-    querySql+=" where article_st='1' ";
+    querySql+=" where article_st = 1 ";
 
 
     if(filter!=null && filter.id!=null){
@@ -107,7 +107,7 @@ articleService.queryArticles=function(filter,callback){
     var querySql1 = querySql ;
 
     var page = filter.page;
-    if(page.pgindex){
+    if(page){
         querySql+=" limit "+(page.pgindex-1)*page.pgsize+","+page.pgsize;
 
     }
@@ -153,13 +153,20 @@ articleService.queryArticles=function(filter,callback){
                                     logger.error(err);
                                     callback('error');
                                 }else{
-                                    page.totalCount=rows2[0].count;
-                                    page.pageCount=page.totalCount%page.pgsize==0?page.totalCount/page.pgsize:parseInt(page.totalCount/page.pgsize)+1;
-                                    page.pgNextIndex = (parseInt(page.pgindex)+1) > page.pageCount ? null : parseInt(page.pgindex)+1;
-                                    page.pgLastIndex = parseInt(page.pgindex)-1==0 ? null : parseInt(page.pgindex)-1;
 
-                                    //console.log(rows);
-                                    callback(err,rows,page);
+                                    if(page){
+
+                                        page.totalCount=rows2[0].count;
+                                        page.pageCount=page.totalCount%page.pgsize==0?page.totalCount/page.pgsize:parseInt(page.totalCount/page.pgsize)+1;
+                                        page.pgNextIndex = (parseInt(page.pgindex)+1) > page.pageCount ? null : parseInt(page.pgindex)+1;
+                                        page.pgLastIndex = parseInt(page.pgindex)-1==0 ? null : parseInt(page.pgindex)-1;
+
+                                        callback(err,rows,page);
+                                    } else {
+
+                                        callback(err,rows);
+
+                                    }
                                 }
                             });
 

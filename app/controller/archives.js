@@ -16,19 +16,14 @@ router.use(function (req, res, next) {
 router.get('/', function (req, res) {
     logger.info('归档');
 
-    var page={
-        pgsize:10,
-        pgindex:null
-    }
-
-    var filter = {"page":page};
+    var filter = {};
     let result={};
     async.auto([
 
         //归档
         function(callback){
 
-            articleService.queryArticles(filter,function(err,rs,pager){
+            articleService.queryArticles(filter,function(err,rs){
 
                 //logger.info(rs);
 
