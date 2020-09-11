@@ -11,8 +11,8 @@ const historyService={};
 historyService.queryHistories=function(callback){
 
     var querySql= "select "+
-        " ID,HISTORY_CONTENT,HISTORY_DT,CREATE_TIME,USER_NM,ST,(@i:= @i+1) as rank "+
-        " from blog.history,(SELECT @i:=0) as i " +
+        " ID,HISTORY_CONTENT,HISTORY_DT,CREATE_TIME,USER_NM,ST,CAST((@rownum :=@rownum + 1) as SIGNED) as rownum "+
+        " from blog.history,(SELECT @rownum := 0) rw " +
         " where st='1' order by id  ";
 
     //logger.info(querySql);
